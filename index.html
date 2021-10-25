@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>
+      I called this place ‘America’s worst place to live.’ Then I went there.
+    </title>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
+    <script src="data/data.js" defer></script>
+    <script src="js/vis1.js" defer></script>
+    <script src="js/vis2.js" defer></script>
+    <script src="js/vis3.js" defer></script>
+    <script src="js/vis4.js" defer></script>
+    <link
+      href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900,400italic,700italic,900italic|Droid+Serif:400,700,400italic,700italic"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="styles/newspaper.css" />
+  </head>
+  <body>
+    <div class="head">
+      <div class="headerobjectswrapper">
+        <header>Washington Post</header>
+      </div>
+
+      <div class="subhead">New York, NY - Thursday September 3, 2015</div>
+    </div>
+    <div class="content">
+      <h1>
+        I called this place ‘America’s worst place to live.’ Then I went there.
+      </h1>
+      <p>
+        <span class="subtitle">By Christopher Ingraham <br /></span>
+      </p>
+      <figure>
+        <img src="./images/redlake-sign.jpg" />
+        <figcaption>Chris's thumb looks a lot like an index finger.</figcaption>
+      </figure>
+
+      <p>
+        I drove up to the Red Lake County, Minn., courthouse not knowing exactly
+        what to expect. This was, after all, the seat of the county that I had
+        just a few days ago proclaimed, in a story, the "absolute worst place to
+        live in America." Residents had been outraged. A county commissioner
+        told the state's largest newspaper I could kiss his butt. Would I be
+        arrested? Beat? Flogged with a hotdish?
+      </p>
+      <p>
+        But what greeted me instead last week was pure spectacle. A drum line
+        from nearby Lafayette High School performed a routine on the courthouse
+        steps. Officials and county residents, beaming and full of civic pride,
+        lined up to shake my hand and welcome me to their home. And a gaggle of
+        local press was there, cameras rolling, to cover it all.
+      </p>
+      <p>
+        As a reporter, I'm used to folks disagreeing with me, especially when
+        covering contentious topics like guns, gay marriage and drug policy. But
+        until I wrote about the U.S. Department of Agriculture's natural
+        amenities index -- which rates and ranks counties on measures of scenery
+        and climate -- I had never been disagreed with so much.
+      </p>
+      <p>And so politely.</p>
+
+      <p>
+        Minnesota, you see, ended up looking less-than-great in the USDA's
+        ranking. And the state's Red Lake County, five hours northwest of
+        Minneapolis in the flat fertile basin of the Red River valley, came in
+        dead-last in the nation. The summers are hot, the winters are cold, and
+        there aren't any actual lakes in the county -- all of which contribute
+        to a low score by the USDA's criteria.
+      </p>
+      <p>
+        Could it really be that bad? I had to find out. At the invite of local
+        businessman Jason Brumwell (The Post paid), I took a trip up there last
+        week to see the truth behind the numbers. I wanted to find out what life
+        in America's worst county was really like.
+      </p>
+      <p>
+        Some county residents were hurt and even angered by their last-place
+        ranking. But not Brumwell. He's a relentlessly positive guy who keeps a
+        beat-up copy of "The 2,548 Best Things Anybody Ever Said" in the back of
+        his beat-up Buick LaCrosse.
+      </p>
+      <p>
+        Where others saw a slight, Brumwell saw an opportunity. With his father
+        and two of his siblings, he operates Voyageur's View Camping & Tubing on
+        Red Lake River. "My family gets to spend our days listening to people
+        from all over the United States and the world tell us how beautiful our
+        area is," he says.
+      </p>
+      <p>
+        Brumwell welcomed the media attention the county's last-place ranking
+        brought, and encouraged other businesses to do the same. My original
+        story hadn't quite framed it this way, but some locals took it to mean
+        that we called their county ugly. So, soon after my article went up,
+        restaurants and bars began offering specials on "ugly burgers" and "ugly
+        wings." Officials in Red Lake Falls, the county's largest town, with a
+        population of 1,410, floated the idea of renaming next year's Summerfest
+        the "Uglyfest."
+      </p>
+      <p>
+        When I arrived at the county courthouse, Red Lake Falls mayor Kevin
+        Harmoning, who also runs a modular home manufacturer in town, took me
+        inside for some initial introductions. The biggest headache in a town
+        like Red Lake Falls? "Making ends meet," he says, referring to keeping
+        the town running, the bills paid and the lights on.
+      </p>
+
+      <p>
+        During the recession, they had actually been forced to turn some of the
+        street lights off to keep everything else running, city administrator
+        Kathleen Schmitz said. But all in all, the downturn's effects hadn't
+        been as harsh here as elsewhere. Many of the farms outside of town that
+        form the economic backbone of the county weren't affected much at all.
+        "People still needed to eat," Schmitz said.
+      </p>
+
+      <p>
+        From the courthouse, Brumwell piled a group of us into a bright red
+        roofless tour bus and took us to a dairy farm outside of town owned by
+        brothers Carl and Joe Schindler. They milk about 120 cows 12 at a time
+        the old-fashioned way, with a simple pump system installed in their
+        dairy barn.
+      </p>
+
+      <aside>
+        <h2>Voting with their feet</h2>
+        <p>
+          The argument can be made that the most desirable places to live are the places
+          where people actually choose to live. We can therefore order couties
+          by their population growth based on the latest census data gathered.
+        </p>
+        <br />
+        <h5 class="chart-title">
+          Top 10 counties by percent change in population
+        </h5>
+        <h6 class="chart-subtitle">2010 - 2020</h6>
+        <div id="pop_growth_bar_1"></div>
+        <p>
+          However, short-term factors can skew these results. Many of the
+          fastest growing counties are oil towns that benefitted from the shale
+          oil boom in the past decade.
+        </p>
+        <br />
+        <h5 class="chart-title">Percent change across 2 decades</h5>
+        <div id="pop_growth_scatter_1"></div>
+        <p>
+          You can see that many of the top performers in the last decade did not
+          fare as well in the previous decade. To better compare across time, I
+          have devised the N8 index whereby the the percent change in each of the past 3
+          decades are multiplied. To avoid sign flipping, the 
+          N8 index omits counties that have decades of growth and shrinkage. 
+        </p>
+        <br>
+        <h5 class="chart-title">Counties with highest N8 index</h5>
+        <div class="n8-inspector">
+          <div id="n8_index_pos"></div>
+          <img src="./images/forsyth.jpg" style="width: 225px" />
+        </div>
+        <br>
+        <h5 class="chart-title">Counties with lowest N8 index</h5>
+        <div class="n8-inspector">
+          <img src="./images/mcdowell.webp" style="width: 225px" />
+          <div id="n8_index_neg"></div>
+        </div>
+      </aside>
+
+      <p>
+        The visit was a shot of pure country. A newborn calf suckled my thumb as
+        the brothers told me about life on the farm. The earthy smells of a
+        dairy operation -- manure and hay and sawdust and dirt -- hung thick in
+        the air. It sure didn't seem like the worst place in America -- or one
+        particularly lacking in natural amenities, or natural beauty, either. In
+        the course of my visit, I learned how crucial farming is to the local
+        economy. The wheat harvest had just wrapped up, leaving fields of golden
+        stubble behind, but fourth-generation farmer Alex Yaggie, 27, showed me
+        the cockpit of one of his 40-foot combines and let me drive it around an
+        empty lot as much as I dared.
+      </p>
+
+      <p>
+        Agriculture directly or indirectly supports a lot of economic activity
+        in the county. And the small-town narrative we're all used to hearing --
+        of boom and decline, of good jobs leaving for overseas and Main Streets
+        hollowed out by relentlessly low prices -- doesn't really seem to apply
+        here. Harmoning's manufacturing plant was a hum of activity the day I
+        visited, with home components in varying stages of construction moving
+        along the quarter mile-long rail line that cranks out a completed house,
+        ready for shipping, once every 10 hours.
+      </p>
+
+      <p>
+        The economic opportunity is a big reason many people stay, and some
+        others who left eventually make their way back here. County resident
+        Justin Carriere came back to the area after an eight-year stint as an
+        investment banker in New York City. He's an avid fisherman and makes a
+        lightly-breaded fried walleye that will knock your socks off. Having
+        grown up in the area and then experienced the frantic chaos of the
+        financial crisis first-hand, he started hankering for home. He moved
+        back and took a job at a bank in town.
+      </p>
+
+      <p>
+        "You just know that there was an easier way to go about things," he told
+        me at a meet-and-greet later in the day with county residents at TNJ's
+        Bar & Grill in Red Lake Falls. His commute now is a whole lot shorter
+        and less hectic. And it's easier to talk to people. "You can strike up a
+        conversation with just about anyone you meet," he said.
+      </p>
+      <p>
+        The folks at TNJ's were certainly eager to talk to an out-of-town
+        reporter, and tell him what made their community so special. Al Buse,
+        for instance, is Red Lake Falls' oldest resident at 101 -- "like
+        everyone's grandpa," Jason Brumwell told me. He still lives alone, and
+        every morning he loads his tools in the back of his bright yellow golf
+        cart and makes his way through town, fixing things that need fixing.
+      </p>
+
+      <p>
+        Al helped himself to my fries as I chatted him up over a dinner of "ugly
+        burger" (double-decker burger and fried egg on toasted wheat). He told
+        me about his stint with the Marines during World War II, and how he had
+        watched the Enola Gay take off on its fateful flight to Hiroshima. I
+        asked him what his secret to long life was. He said it was the wrong
+        question. "I would recommend that you don't live past 80," he said.
+        "This 100 business is the worst."
+      </p>
+      <p>
+        For dessert, TNJ's served a cake built as a map of the county by baking
+        prodigy Matt Weiss, a student at a local high school. It was by far rtge
+        finest work of cake-based cartography I have ever seen. I don't expect
+        to encounter its equal even if I live as long as Al Buse.
+      </p>
+      <p>
+        Education is big in the county. Despite a population of only 4,000, the
+        county supports two elementary schools and two high schools. Each of the
+        high schools graduates roughly two dozen students each year, and even
+        the county's poor have a remarkably good shot of becoming middle class
+        later in life, according to a 2013 study by Harvard's Equality of
+        Opportunity Project.
+      </p>
+      <p>
+        In fact, by most economic metrics, the county looks pretty good. The
+        unadjusted employment rate in July was 4.6 percent, well below the
+        national average. The median household income is $48,000, while the
+        median home value is about $89,000, according to the U.S. Census. The
+        poverty rate is 11.9 percent, below the U.S. average of 15.4 percent.
+        One reason I suspect the outcry against my article was so strong is that
+        Minnesotans aren't used to being ranked low on anything.
+      </p>
+      <p>
+        I spent the night at the Chateau Motel & Liquor Store, which is a
+        brilliant business idea that absolutely needs to come east. The
+        accommodations were nice, but what I found most striking is how friendly
+        everyone I'd met had been. They were fiercely proud of their community
+        in a way I'd never seen before -- not even during my childhood in
+        small-town upstate New York. "We don't welcome people like this when
+        they come to D.C.," I kept saying to people, dumbfounded.
+      </p>
+      <p>
+        The next day, Burwell planned a whirlwind tour of the county on a bus
+        with a sign that read "Welcome To America's Worst Tour." We saw the
+        county's largest asparagus farm and sampled some amazing pickled
+        asparagus with cayenne pepper.
+      </p>
+      <p>
+        When we stopped for lunch -- fried cheese curds and a "Minnesota burger"
+        -- at TJ's Tavern in the town of Oklee (pop. 429), U.S. Rep. Collin
+        Peterson (D-Minn.) swung by and sang an ode to ugliness on the bar's
+        main stage. A savvy politician, Peterson "just happened" to have a
+        handful of guitar picks in his pocket.
+      </p>
+      <p>
+        Peterson's a Democratic representative in a largely Republican district.
+        But most folks I talked to didn't give much thought to politics, or
+        think too highly of politicians, at least at the national level.
+        Residents aren't particularly ideological. The county voted for Bill
+        Clinton in 1992 and 1996, George W. Bush in 2000 and 2004, Barack Obama
+        in 2008, and Mitt Romney, narrowly, in 2012.
+      </p>
+      <p>
+        Gun culture is strong in the region. With some consternation, given my
+        recent article, I learned that Chuck Simpson, the county commissioner
+        interviewed by the Minneapolis Star-Tribune, would be giving me a tour
+        of the Plummer Area Sportsman Club's shooting range. But Chuck was
+        gracious about it, and we made amends as he told me about how residents
+        banded together to raise funds and build the shooting range when there
+        was a need for it. (I didn't actually do any shooting.)
+      </p>
+      <p>
+        It's a point of pride in the county that when residents need to get
+        something done, they often simply do it themselves. Residents raised the
+        funds to build Red Lake Falls' municipal swimming pool on their own,
+        dollar-by-dollar. When the nearby town of Brooks needed a community
+        center, businesses donated funds and residents volunteered time to build
+        it by hand.
+      </p>
+      <p>
+        Over and over, the folks I spoke with told me it was that sense of
+        community that kept them here, and that contributed to that enormous
+        outpouring of civic pride in response to my original article. "There's
+        lots of freedom here," Jason Brumwell said. "But everybody's still
+        watching out for each other."
+      </p>
+      <p>
+        The people were amazing. "Minnesota Nice," as it's called, is a
+        verifiable phenomenon. But even going beyond the civic pride that was so
+        thick you could season a fried walleye with it, there was the landscape.
+      </p>
+
+      <figure>
+        <img src="./images/scenic.jpg" style="width: 600px" />
+        <figcaption>
+          Chris was ruthlessly abandoned on his kayaking trip.
+        </figcaption>
+      </figure>
+      <p>
+        The high point of the tour for me was a kayak trip down Red Lake River,
+        which meanders through the county before meeting with Clearwater River
+        in Red Lake Falls and eventually emptying into the Red River along the
+        Minnesota-North Dakota border
+      </p>
+      <p>
+        The river was a ribbon of tranquility slicing through the green-gold
+        late August landscape. Broad and flat, but with just enough elevation
+        drop to keep things interesting for this novice kayaker, the river
+        carried a group of us smoothly through the pylons of a defunct railroad
+        trestle and downstream toward sandy bluffs that rose 50 or so feet above
+        the banks.
+      </p>
+      <p>
+        Locals fish the river for bass and walleye in the summer. When it
+        freezes in the winter (average low temperature in January: -4 degrees),
+        they make the best of it by skiing and skating across its surface. I
+        began to understand what schoolteacher Bobbi Aakhus had said to me at
+        the meet-and-greet at T&J's. "There's so much to do here," she said.
+        "You just have to really dig into it."
+      </p>
+      <p>
+        Before visiting, I wouldn't have believed her. I was worried that 36
+        hours would be too long a visit, that we'd run out of things to say or
+        do and end up sitting in silence, staring at corn. But I left feeling
+        like I'd barely scratched the surface of all there is to see and know
+        about the county and the people who call it home.
+      </p>
+      <p>
+        I kept looking for signs of discord or trouble, cracks in the facade of
+        Minnesota Nice. But I couldn't find any. The places I visited, from the
+        bars to the barns to the warehouses, even smelled wholesome -- like wood
+        and grain and prairie air.
+      </p>
+      <p>
+        There's perhaps something amiss in a ranking that places Red Lake County
+        at the absolute bottom of the nation when it comes to scenery and
+        climate. As I noted in my original story, the USDA's index places a lot
+        of emphasis on mild weather and a little less on true scenic beauty,
+        which of course is harder to quantify. But there's no doubt that the Red
+        Lake County region is flat-out gorgeous. In a phone interview, Minnesota
+        Sen. Amy Klobuchar called it a "stark beauty," and I think she's right.
+        And you can see that beauty everywhere, from the open farm country to
+        the craggy bluffs and hills of the river valley.
+      </p>
+      <p>
+        When people and places halfway across the country are just a mouse-click
+        away on your computer, it's easy to assume that the we live in a nation
+        made small and manageable by technology. But traveling to a place like
+        Red Lake County, hours away from any major metro area, is a reminder
+        that in much of the country, the rhythms of daily life are, still,
+        markedly different than the coastal city grind of long commutes and
+        high-octane jobs.
+      </p>
+      <p>
+        For some of us, it takes a place as small as Red Lake County to drive
+        home just how big this country really is.
+      </p>
+      <p>
+        By Christopher Ingraham
+        <br />
+        Christopher Ingraham was a reporter on The Post’s business desk from
+        2014 to 2017. He currently writes the Why Axis, a newsletter about the
+        data shaping and informing our lives.
+      </p>
+    </div>
+
+    <script>
+      d3.select(".target") // select the elements that have the class 'target'
+        .style("stroke-width", 8); // change their style: stroke width is not equal to 8 pixels
+    </script>
+  </body>
+</html>
