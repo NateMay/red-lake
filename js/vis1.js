@@ -6,7 +6,7 @@ const _2020_min = _.last(_2020_rates).percentChange2020;
 
 
 // set the dimensions and margins of the graph
-var margin = { top: 10, right: 10, bottom: 10, left: 40 },
+var margin = { top: 10, right: 30, bottom: 10, left: 30 },
   width = 450 - margin.left - margin.right,
   height = 200 - margin.top - margin.bottom;
 
@@ -19,8 +19,9 @@ var tooltip = d3.select("body").append("div")
 var svg1 = d3
   .select("#pop_growth_bar_1")
   .append("svg")
-  .attr("width", width + margin.left + margin.right)
-  .attr("height", height + margin.top + margin.bottom)
+  .attr("viewBox", `0 0 ${width + margin.left + margin.right} ${height + margin.top + margin.bottom}`)
+  // .attr("width", width + margin.left + margin.right)
+  // .attr("height", height + margin.top + margin.bottom)
   .append("g")
   .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
@@ -94,7 +95,7 @@ svg1
 .attr("x", 230)
 .attr("y", 10)
 .attr("rx", "8px")
-.attr("width", 170)
+.attr("width", 162)
 .attr("height", 60)
 .style("stroke", "grey")
 .style("fill", "transparent")

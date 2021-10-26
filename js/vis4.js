@@ -58,8 +58,7 @@ var tooltip = d3.select("body").append("div")
 var svg = d3
   .select("#map")
   .append("svg")
-  .attr("width", width)
-  .attr("height", height)
+  .attr("viewBox", `0 0 ${width} ${height}`)
   .style("margin", "-15px auto");
 
 var path = d3.geo.path();

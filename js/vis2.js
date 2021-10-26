@@ -14,7 +14,7 @@ const _2000_min = _.last(sample).percentChange2000;
 
 
 // set the dimensions and margins of the graph
-var margin2 = { top: 10, right: 10, bottom: 30, left: 40 },
+var margin2 = { top: 10, right: 30, bottom: 40, left: 30 },
   width2 = 450 - margin2.left - margin2.right,
   height2 = 400 - margin2.top - margin2.bottom;
 
@@ -22,8 +22,7 @@ var margin2 = { top: 10, right: 10, bottom: 30, left: 40 },
 var svg2 = d3
   .select("#pop_growth_scatter_1")
   .append("svg")
-  .attr("width", width2 + margin2.left + margin2.right)
-  .attr("height", height2 + margin2.top + margin2.bottom)
+  .attr("viewBox", `0 0 ${width2 + margin2.left + margin2.right} ${height2 + margin2.top + margin2.bottom}`)
   .append("g")
   .attr("transform", "translate(" + margin2.left + "," + margin2.top + ")");
 

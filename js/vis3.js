@@ -37,7 +37,7 @@ const negatives = _.orderBy(
 const minN8 = _.first(negatives).n8;
 
 // set the dimensions and margins of the graph
-var margin3 = { top: 10, right: 10, bottom: 10, left: 40 },
+var margin3 = { top: 10, right: 30, bottom: 10, left: 30 },
   width3 = 450 - margin3.left - margin3.right,
   height3 = 200 - margin3.top - margin3.bottom;
 
@@ -45,8 +45,7 @@ var margin3 = { top: 10, right: 10, bottom: 10, left: 40 },
 var svg3 = d3
   .select("#n8_index")
   .append("svg")
-  .attr("width", width3 + margin3.left + margin3.right)
-  .attr("height", height3 + margin3.top + margin3.bottom)
+  .attr("viewBox", `0 0 ${width3 + margin3.left + margin3.right} ${height3 + margin3.top + margin3.bottom}`)
   .append("g")
   .attr("transform", "translate(" + margin3.left + "," + margin3.top + ")");
 
@@ -129,7 +128,7 @@ svg3
   .attr("x", 260)
   .attr("y", -10)
   .attr("rx", "8px")
-  .attr("width", 140)
+  .attr("width", 132)
   .attr("height", 60)
   .style("stroke", "grey")
   .style("fill", "transparent")
