@@ -101,7 +101,7 @@ svg
 
 var legend = svg
   .selectAll("g.legend")
-  .data(color_domain.map(n => n - 1))
+  .data(color_domain.map(n => n - 1).reverse())
   .enter()
   .append("g")
   .attr("class", "legend");
