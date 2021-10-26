@@ -49,13 +49,13 @@ h1 {
   padding: 10px 0 10px 0;
 }
 
-figure {
+figure.floater {
   width: 50%;
   float: right;
   margin-left: 1rem;
   overflow: hidden;
 }
-figure img {
+figure.floater img {
   max-height: 450px;
 }
 
@@ -70,7 +70,7 @@ aside {
   float: right;
   box-shadow: inset 5px 0 5px -5px #29627e;
   background-color: #f3eed5;
-  color: #29627e;
+  color: #2f2f2f;
 }
 
 aside h2 {
@@ -79,10 +79,11 @@ aside h2 {
 
 aside > p {
   margin: 0.5rem;
+  font-size: 1rem;
 }
 
 .chart-title {
-  color: #2f2f2f;
+  color: #29627e;
   text-align: center;
   margin: 0.5rem;
 }
@@ -108,7 +109,7 @@ div.tooltip {
 }
 
 .top_10_2020 {
-  fill: #B369A3 !important;
+  fill: #7D4972 !important;
   opacity: 1 !important;
   z-index: 1;
 }
@@ -119,4 +120,35 @@ div.tooltip {
 
 .n8-inspector > * {
   margin: 1rem; 
+}
+
+table {
+  font-size: 1rem;
+}
+
+
+
+path {
+  stroke:white;
+  stroke-width: 1px;
+}
+
+body {
+  font-family: 'Proxima Nova', sans-serif;
+}
+
+.county {
+  font: 14px sans-serif;
+  font-weight: bold;
+}
+
+.legend {
+  font-size: 14px;
+  font-family: 'Proxima Nova', sans-serif;
+}
+
+.legend_title {
+  font-size: 14px;
+  font-family: 'Proxima Nova', sans-serif;
+  font-weight: bold;
 }

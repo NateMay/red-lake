@@ -7,11 +7,15 @@
     </title>
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
+    <script type="text/javascript" src="https://d3js.org/queue.v1.min.js"></script>
+	  <script type="text/javascript" src="https://d3js.org/topojson.v1.min.js"></script> 
     <script src="data/data.js" defer></script>
+    <script src="data/amenity.js" defer></script>
+    <script src="data/usa.js" defer></script>
     <script src="js/vis1.js" defer></script>
     <script src="js/vis2.js" defer></script>
     <script src="js/vis3.js" defer></script>
-    <script src="js/vis4.js" defer></script>
+
     <link
       href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900,400italic,700italic,900italic|Droid+Serif:400,700,400italic,700italic"
       rel="stylesheet"
@@ -34,7 +38,7 @@
       <p>
         <span class="subtitle">By Christopher Ingraham <br /></span>
       </p>
-      <figure>
+      <figure class="floater">
         <img src="./images/redlake-sign.jpg" />
         <figcaption>Chris's thumb looks a lot like an index finger.</figcaption>
       </figure>
@@ -128,9 +132,10 @@
       <aside>
         <h2>Voting with their feet</h2>
         <p>
-          The argument can be made that the most desirable places to live are the places
-          where people actually choose to live. We can therefore order couties
-          by their population growth based on the latest census data gathered.
+          The argument can be made that the most desirable places to live are
+          the places where people actually choose to live. We can therefore
+          order couties by their population growth based on the latest census
+          data gathered.
         </p>
         <br />
         <h5 class="chart-title">
@@ -141,29 +146,45 @@
         <p>
           However, short-term factors can skew these results. Many of the
           fastest growing counties are oil towns that benefitted from the shale
-          oil boom in the past decade.
+          oil boom in the past decade, while counties on the decline cite
+          disruptive additions to their state's highways.
         </p>
         <br />
-        <h5 class="chart-title">Percent change across 2 decades</h5>
+        <h5 class="chart-title">Percent change across 3 decades</h5>
+        <h6 class="chart-subtitle">459 county sample</h6>
         <div id="pop_growth_scatter_1"></div>
         <p>
-          You can see that many of the top performers in the last decade did not
-          fare as well in the previous decade. To better compare across time, I
-          have devised the N8 index whereby the the percent change in each of the past 3
-          decades are multiplied. To avoid sign flipping, the 
-          N8 index omits counties that have decades of growth and shrinkage. 
+          You can see that populations change can vary greatly from decade to
+          decade. To better compare across time, I have devised the N8 index
+          whereby the the percent change in each of the past 3 decades are
+          multiplied. To avoid sign flipping, the N8 index omits counties that
+          have decades of growth and decline.
         </p>
-        <br>
-        <h5 class="chart-title">Counties with highest N8 index</h5>
-        <div class="n8-inspector">
-          <div id="n8_index_pos"></div>
-          <img src="./images/forsyth.jpg" style="width: 225px" />
-        </div>
-        <br>
-        <h5 class="chart-title">Counties with lowest N8 index</h5>
-        <div class="n8-inspector">
-          <img src="./images/mcdowell.webp" style="width: 225px" />
-          <div id="n8_index_neg"></div>
+        <br />
+    
+        <h5 class="chart-title">Best and worst counties according to the N8 index</h5>
+        <h6 class="chart-subtitle">Top and bottom 10</h6>
+        <br />
+        <div id="n8_index"></div>
+        <div style="display:flex">
+        
+          <figure style="width: 50%;">
+            <figcaption id="selected-figcaption">
+              McDowell County, WV
+            </figcaption>
+            <img src="./images/mcdowell.webp" style="width: 258px" />
+          </figure>
+
+          <table>
+            <tr>
+              <td>N8 index</td>
+              <td>-5.81</td>
+            </tr>
+            <tr>
+              <td>Another Index</td>
+              <td>1.12</td>
+            </tr>
+          </table>
         </div>
       </aside>
 
@@ -310,7 +331,7 @@
         thick you could season a fried walleye with it, there was the landscape.
       </p>
 
-      <figure>
+      <figure class="floater">
         <img src="./images/scenic.jpg" style="width: 600px" />
         <figcaption>
           Chris was ruthlessly abandoned on his kayaking trip.
@@ -382,11 +403,7 @@
         2014 to 2017. He currently writes the Why Axis, a newsletter about the
         data shaping and informing our lives.
       </p>
+    <a href="./explorer.html">explorer<a>
     </div>
-
-    <script>
-      d3.select(".target") // select the elements that have the class 'target'
-        .style("stroke-width", 8); // change their style: stroke width is not equal to 8 pixels
-    </script>
   </body>
 </html>
