@@ -57,11 +57,13 @@ figure.floater {
   overflow: hidden;
 }
 figure.floater img {
-  max-height: 450px;
+  max-height: 350px;
 }
 
 figcaption {
   text-align: center;
+  font-size: 1.1rem;
+  color: #555;
 }
 
 aside {
