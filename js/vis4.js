@@ -88,6 +88,7 @@ svg
   .enter()
   .append("path")
   .attr("d", path)
+  .attr("id", d => d.id)
   .style("fill", (d) => color(amenity_scores[d.id]))
   .style("opacity", 0.8)
   .on("mouseover", county => {
