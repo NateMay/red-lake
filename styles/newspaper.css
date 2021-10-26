@@ -23,6 +23,9 @@ p {
   text-align: center;
   position: relative;
 }
+#Layer_1 {
+  max-width: 1000px;
+}
 
 .subhead {
   text-transform: uppercase;
