@@ -153,7 +153,7 @@ svg2
   .style("font-size", ".75em")
   .attr("x", 55)
   .attr("y", 44)
-  .text("2020 % change");
+  .text("2000 % change");
 
 svg2
   .append("rect")
