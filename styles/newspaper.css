@@ -52,7 +52,7 @@ h1 {
 figure.floater {
   width: 50%;
   float: right;
-  margin-left: 1rem;
+  margin: 1rem 0 1rem 1rem;
   overflow: hidden;
 }
 figure.floater img {
@@ -82,7 +82,12 @@ aside > p {
   font-size: 1rem;
 }
 
-.chart-title {
+aside figure {
+  margin: 1rem;
+  width: 50%;
+}
+
+.chart-title, caption {
   color: #29627e;
   text-align: center;
   margin: 0.5rem;
@@ -125,10 +130,16 @@ div.tooltip {
 table {
   font-size: 1rem;
 }
+td { 
+  padding: 4px;
+}
+td.right {
+  text-align: right
+}
 
 
-
-path {
+/* map */
+#map path {
   stroke:white;
   stroke-width: 1px;
 }

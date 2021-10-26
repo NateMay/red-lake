@@ -75,9 +75,7 @@ svg2
       .style("left", d3.event.pageX + "px")
       .style("top", d3.event.pageY - 28 + "px");
   })
-  .on("mouseout", (county) => {
-    tooltip.transition().duration(500).style("opacity", 0);
-  });
+  .on("mouseout", hideTooltip);
 
 // positive - negative boundaries
 svg2

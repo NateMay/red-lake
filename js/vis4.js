@@ -18,19 +18,25 @@ var color_domain = [
    -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12
 ];
 var legend_labels = [
-  "< 500",
-  "500+",
-  "1000+",
-  "1500+",
-  "2000+",
-  "2500+",
-  "3000+",
-  "3500+",
-  "4000+",
-  "4500+",
-  "5000+",
-  "5500+",
-  "6000+",
+  "12+",
+  "11",
+  "10",
+  "9",
+  "8",
+  "7",
+  "6",
+  "5",
+  "4",
+  "3",
+  "2",
+  "1",
+  "0",
+  "-1",
+  "-2",
+  "-3",
+  "-4",
+  "-5",
+  "-6",
 ];
 
 const greens = ['#b369a3', '#ab71a3', '#a577a3', '#a07ca3', '#9b81a3', '#9686a3', '#928aa3', '#8e8ea3', '#8a92a2', '#8696a2', '#8399a2', '#7f9da2', '#7ca0a2', '#79a3a2', '#75a7a2', '#72aaa2', '#6fada2', '#6cb0a2', '#69b3a2']
@@ -44,10 +50,9 @@ var color = d3.scale
   .domain(color_domain)
   .range(greens);
 
-var div = d3
-  .select("body")
-  .append("div")
-  .attr("class", "tooltip")
+  // Define the div for the tooltip
+var tooltip = d3.select("body").append("div")	
+  .attr("class", "tooltip")				
   .style("opacity", 0);
 
 var svg = d3
@@ -56,24 +61,25 @@ var svg = d3
   .attr("width", width)
   .attr("height", height)
   .style("margin", "-15px auto");
+
 var path = d3.geo.path();
 
-//Moves selction to front
-d3.selection.prototype.moveToFront = function () {
-  return this.each(function () {
-    this.parentNode.appendChild(this);
-  });
-};
+// //Moves selction to front
+// d3.selection.prototype.moveToFront = function () {
+//   return this.each(function () {
+//     this.parentNode.appendChild(this);
+//   });
+// };
 
-//Moves selction to back
-d3.selection.prototype.moveToBack = function () {
-  return this.each(function () {
-    var firstChild = this.parentNode.firstChild;
-    if (firstChild) {
-      this.parentNode.insertBefore(this, firstChild);
-    }
-  });
-};
+// //Moves selction to back
+// d3.selection.prototype.moveToBack = function () {
+//   return this.each(function () {
+//     var firstChild = this.parentNode.firstChild;
+//     if (firstChild) {
+//       this.parentNode.insertBefore(this, firstChild);
+//     }
+//   });
+// };
 
 svg
   .append("g")
@@ -83,77 +89,45 @@ svg
   .enter()
   .append("path")
   .attr("d", path)
-  .style("fill", function (d) {
-    if (amenity_scores[d.id]) {
-      console.log(color(amenity_scores[d.id]))
-    }
-
-    return color(amenity_scores[d.id]);
-  })
+  .style("fill", (d) => color(amenity_scores[d.id]))
   .style("opacity", 0.8)
-  .on("mouseover", function (d) {
-    var sel = d3.select(this);
-    sel.moveToFront();
-    d3.select(this)
-      .transition()
-      .duration(300)
-      .style({ opacity: 1, stroke: "black", "stroke-width": 1.5 });
-    div.transition().duration(300).style("opacity", 1);
-    div
-      .text(names[d.id] + ": " + amenity_scores[d.id])
+  .on("mouseover", county => {
+    tooltip.transition().duration(200).style("opacity", 0.9);
+    tooltip
+      .text(names[county.id] + ": " + amenity_scores[county.id])
       .style("left", d3.event.pageX + "px")
-      .style("top", d3.event.pageY - 30 + "px");
+      .style("top", d3.event.pageY - 28 + "px");
   })
-  .on("mouseout", function () {
-    var sel = d3.select(this);
-    sel.moveToBack();
-    d3.select(this)
-      .transition()
-      .duration(300)
-      .style({ opacity: 0.8, stroke: "white", "stroke-width": 1 });
-    div.transition().duration(300).style("opacity", 0);
-  });
+  .on("mouseout", (county) => tooltip.transition().duration(500).style("opacity", 0));
 
 var legend = svg
   .selectAll("g.legend")
-  .data(color_domain.map(n => n-1))
+  .data(color_domain.map(n => n - 1))
   .enter()
   .append("g")
   .attr("class", "legend");
 
-var ls_w = 73,
+var ls_w = 50,
   ls_h = 20;
 
 legend
   .append("rect")
-  .attr("x", function (d, i) {
-    return width - i * ls_w - ls_w;
-  })
+  .attr("x",  (_c, i) => width - i * ls_w - ls_w)
   .attr("y", 550)
   .attr("width", ls_w)
   .attr("height", ls_h)
-  .style("fill", function (d, i) {
-    return color(d);
-  })
+  .style("fill", d => color(d))
   .style("opacity", 0.8);
 
 legend
   .append("text")
-  .attr("x", function (d, i) {
-    return width - i * ls_w - ls_w;
-  })
+  .attr("x",  (_c, i) => width - i * ls_w - ls_w)
   .attr("y", 590)
-  .text(function (d, i) {
-    return legend_labels[i];
-  });
-
-var legend_title = "Number of independent farms";
+  .text((_c, i) => legend_labels[i]);
 
 svg
   .append("text")
   .attr("x", 10)
   .attr("y", 540)
   .attr("class", "legend_title")
-  .text(function () {
-    return legend_title;
-  });
+  .text("Natural Amenity Index");

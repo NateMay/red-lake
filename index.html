@@ -35,8 +35,10 @@
       <h1>
         I called this place ‘America’s worst place to live.’ Then I went there.
       </h1>
-      <p>
-        <span class="subtitle">By Christopher Ingraham <br /></span>
+      <p style="display:flex">
+        <span class="subtitle">By Christopher Ingraham </span>
+        <span style="flex:1 1 auto"></span>
+        <a href="./explorer.html">Explore Map ►</a><br />
       </p>
       <figure class="floater">
         <img src="./images/redlake-sign.jpg" />
@@ -168,23 +170,38 @@
         <div id="n8_index"></div>
         <div style="display:flex">
         
-          <figure style="width: 50%;">
+          <figure>
+            <!--
             <figcaption id="selected-figcaption">
               McDowell County, WV
             </figcaption>
+            -->
             <img src="./images/mcdowell.webp" style="width: 258px" />
           </figure>
 
+          <div>
+          <br>
+
           <table>
+          <caption>McDowell County, WV</caption>
             <tr>
               <td>N8 index</td>
-              <td>-5.81</td>
+              <td class="right">-5.81</td>
             </tr>
             <tr>
-              <td>Another Index</td>
-              <td>1.12</td>
+              <td>Natural Amenity Index</td>
+              <td class="right">-2.56</td>
+            </tr>
+            <tr>
+              <td>January Sunlight</td>
+              <td class="right">180</td>
+            </tr>
+            <tr>
+              <td>July Humidity</td>
+              <td class="right">60</td>
             </tr>
           </table>
+          </div>
         </div>
       </aside>
 
@@ -403,7 +420,9 @@
         2014 to 2017. He currently writes the Why Axis, a newsletter about the
         data shaping and informing our lives.
       </p>
-    <a href="./explorer.html">explorer<a>
+      <p style="width: 100%; text-align:right">
+        <a  href="./explorer.html">Explore Map ►</a><br />
+      </p>
     </div>
   </body>
 </html>
