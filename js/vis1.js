@@ -59,8 +59,8 @@ svg1
   .attr("width", 18)
   .attr("height", (county) => height - y1(county.percentChange2020 * 100) + ((_2020_min - .02) * 100))
   .style("fill", "#69b3a2")
-  .on("mouseover", showTooltip)
-  .on("mouseout", hideTooltip);
+  // .on("mouseover", showTooltip)
+  // .on("mouseout", hideTooltip);
 
 
 svg1
@@ -73,8 +73,8 @@ svg1
   .attr("width", 18)
   .attr("height", (county) => y1(county.percentChange2020 * 100) - y1(0) )
   .style("fill", "#B369A3")
-  .on("mouseover", showTooltip)
-  .on("mouseout", hideTooltip);
+  // .on("mouseover", showTooltip)
+  // .on("mouseout", hideTooltip);
 
 // y=0 line
 svg1

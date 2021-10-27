@@ -33,6 +33,8 @@ const metrics = [
   },
 ];
 
+const viz5charts = []
+
 metrics.forEach((metric) => {
   const metricData = [
     ...amenities.map((c) => ({
@@ -143,14 +145,14 @@ metrics.forEach((metric) => {
     .style("opacity", (d) => (d.name === "RED LAKE" ? 1 : 0.5))
     .style("fill", (d) => d.name === "RED LAKE" ? "red" : metric.color)
     .attr("stroke", "white")
-    .on("mouseover", (county) => {
-      tooltip.style("opacity", 0.9);
-      tooltip
-        .text(`${county.name}, ${county.state} = ${county.value}`)
-        .style("left", d3.event.pageX + "px")
-        .style("top", d3.event.pageY - 28 + "px");
-    })
-    .on("mouseout", (county) => tooltip.style("opacity", 0));
+    // .on("mouseover", (county) => {
+    //   tooltip.style("opacity", 0.9);
+    //   tooltip
+    //     .text(`${county.name}, ${county.state} = ${county.value}`)
+    //     .style("left", d3.event.pageX + "px")
+    //     .style("top", d3.event.pageY - 28 + "px");
+    // })
+    // .on("mouseout", (county) => tooltip.style("opacity", 0));
 
   svg5
     .append("text")
@@ -161,4 +163,27 @@ metrics.forEach((metric) => {
     .attr("dy", ".75em")
     .attr("transform", "rotate(-90)")
     .text(metric.label);
+  
+  viz5charts.push(svg5)
 });
+
+
+viz5charts[0]
+  .append("line")
+  .style("stroke", "red")
+  .style("stroke-width", 2)
+  .style("pointer-events", "none")
+  .style("opacity", 0.8)
+  .attr("x1", 86)
+  .attr("y1", 537)
+  .attr("x2", 58)
+  .attr("y2", 537);
+
+viz5charts[0]
+  .append("text")
+  .attr("x", 90)
+  .attr("y", 542)
+  .style("font-size", ".65em")
+  .style("fill", "red")
+  .style("font-weight", "bold")
+  .text("Red Lake");

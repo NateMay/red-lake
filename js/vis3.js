@@ -37,78 +37,120 @@ const negatives = _.orderBy(
 const minN8 = _.first(negatives).n8;
 
 // set the dimensions and margins of the graph
-var margin3 = { top: 10, right: 30, bottom: 10, left: 30 },
+var margin3 = { top: 0, right: 30, bottom: 30, left: 30 },
   width3 = 450 - margin3.left - margin3.right,
-  height3 = 200 - margin3.top - margin3.bottom;
+  height3 = 454 - margin3.top - margin3.bottom;
 
 // append the svg object to the body of the page
 var svg3 = d3
   .select("#n8_index")
   .append("svg")
-  .attr("viewBox", `0 0 ${width3 + margin3.left + margin3.right} ${height3 + margin3.top + margin3.bottom}`)
+  .attr(
+    "viewBox",
+    `0 0 ${width3 + margin3.left + margin3.right} ${
+      height3 + margin3.top + margin3.bottom
+    }`
+  )
   .append("g")
   .attr("transform", "translate(" + margin3.left + "," + margin3.top + ")");
 
-// X scale and Axis
+// Y scale and Axis
 var x3 = d3
   .scaleLinear()
-  .domain([0, 100]) // This is the min and the max of the data: 0 to 100 if percentages
+  .domain([minN8 * neg_multiplier, maxN8 * pos_multiplier]) // This is the min and the max of the data: 0 to 100 if percentages
   .range([0, width3]); // This is the corresponding value I want in Pixel
+// This is the corresponding value I want in Pixel
 
-// Y scale and Axis
+svg3
+  .append("g")
+  .attr("transform", "translate(0," + height3 + ")")
+  .call(d3.axisBottom(x3));
+
+// X scale and Axis
 var y3 = d3
   .scaleLinear()
-  .domain([minN8 * neg_multiplier, maxN8 * pos_multiplier]) // This is the min and the max of the data: 0 to 100 if percentages
-  .range([height3, 0]); // This is the corresponding value I want in Pixel
-
-svg3.append("g").call(d3.axisLeft(y3));
+  .domain([0, 100]) // This is the min and the max of the data: 0 to 100 if percentages
+  .range([height3, 0]);
 
 // add the data
-svg3
+const pos_gs = svg3
   .selectAll("whatever")
   .data(_.take(positives, 10))
   .enter()
-  .append("rect")
-  .attr("x", (_c, i) => x3(1 + i * 5))
-  .attr("y", (county) => y3(county.n8 * pos_multiplier))
-  .attr("width", 18)
-  .attr("height", (county) => height3 - y3(county.n8 * pos_multiplier) - 105)
-  .style("fill", "#69b3a2")
-  .on("mouseover", (county) => {
-    tooltip.transition().duration(200).style("opacity", 0.9);
-    tooltip
-      .html(
-        `${county.name}, ${county.state} <br> ${parseFloat(
-          county.n8 * pos_multiplier
-        ).toFixed(2)}`
-      )
-      .style("left", d3.event.pageX + "px")
-      .style("top", d3.event.pageY - 28 + "px");
-  })
-  .on("mouseout", hideTooltip);
+  .append("g");
 
-svg3
-  .selectAll("whatever")
-  .data(_.take(negatives, 10).reverse())
-  .enter()
+pos_gs
   .append("rect")
-  .attr("x", (_c, i) => x3(1 + (i + 10) * 5))
-  .attr("y", y3(0))
-  .attr("width", 18)
-  .attr("height", (county) => y3(county.n8 * neg_multiplier) - y3(0))
-  .style("fill", "#B369A3")
-  .on("mouseover", (county) => {
-    tooltip.transition().duration(200).style("opacity", 0.9);
-    tooltip
-      .html(
-        `${county.name}, ${county.state} <br> ${parseFloat(
-          county.n8 * neg_multiplier
-        ).toFixed(2)}`
-      )
-      .style("left", d3.event.pageX + "px")
-      .style("top", d3.event.pageY - 28 + "px");
-  })
-  .on("mouseout", hideTooltip);
+  .attr("y", (_c, i) => 1 + i * 20)
+  .attr("x", (county) => x3(0))
+  .attr("height", 16)
+  .attr("width", (county) => x3(county.n8 * pos_multiplier) - x3(0))
+  .style("fill", "#69b3a2")
+
+pos_gs
+  .append("text")
+  .text((county) => `${county.name}, ${county.state}`)
+  .attr("y", (_c, i) => 12 + i * 20)
+  .attr("x", (county) => x3(0) - 6)
+  .attr("text-anchor", "end")
+  .attr("font-size", "11px")
+  .attr("fill", "#555");
+
+pos_gs
+  .append("text")
+  .text((county) => parseFloat(county.n8 * pos_multiplier).toFixed(2))
+  .attr("y", (_c, i) => 12 + i * 20)
+  .attr("x", (county) => x3(0) + 6)
+  .attr("text-anchor", "start")
+  .attr("font-size", "11px")
+  .attr("fill", "#fff");
+
+const rl_data = negatives.find(r => r.id == red_lake)
+    
+// negatives
+const neg_gs = svg3
+  .selectAll("whatever")
+  .data([rl_data, ..._.take(negatives, 10).reverse()])
+  .enter()
+  .append("g")
+
+neg_gs
+  .append("rect")
+  .attr("y", (_c, i) => 202 + i * 20)
+  .attr("x", (county) => x3(-minN8 * neg_multiplier) - x3(-county.n8 * neg_multiplier))
+  .attr("height", 16)
+  .attr("width", (county) => x3(-county.n8 * neg_multiplier) - x3(0))
+  .style("fill", c => c.id == red_lake ? "red" : "#B369A3")
+  // .on("mouseover", (county) => {
+    //   tooltip.transition().duration(200).style("opacity", 0.9);
+    //   tooltip
+    //     .html(
+    //       `${county.name}, ${county.state} <br> ${parseFloat(
+    //         county.n8 * pos_multiplier
+    //       ).toFixed(2)}`
+    //     )
+    //     .style("left", d3.event.pageX + "px")
+    //     .style("top", d3.event.pageY - 28 + "px");
+    // })
+  // .on("mouseout", hideTooltip);
+
+neg_gs
+  .append("text")
+  .text((county) => `${county.name}, ${county.state}`)
+  .attr("y", (_c, i) => 214 + i * 20)
+  .attr("x", (county) => x3(0) + 6)
+  .attr("text-anchor", "start")
+  .attr("font-size", "11px")
+  .attr("fill", c => c.id == red_lake ? "red" : "#555");
+
+neg_gs
+  .append("text")
+  .text((county) => parseFloat(county.n8 * neg_multiplier).toFixed(2))
+  .attr("y", (_c, i) => 214 + i * 20)
+  .attr("x", (county) => x3(0) - 6)
+  .attr("text-anchor", "end")
+  .attr("font-size", "11px")
+  .attr("fill", c => c.id == red_lake ? "red" : "#fff");
 
 // y=0 line
 svg3
@@ -117,49 +159,7 @@ svg3
   .style("stroke-width", 1)
   .style("pointer-events", "none")
   .style("opacity", 0.7)
-  .attr("x1", 0)
-  .attr("y1", y3(0))
-  .attr("x2", width3)
-  .attr("y2", y3(0));
-
-// legend
-svg3
-  .append("rect")
-  .attr("x", 260)
-  .attr("y", -10)
-  .attr("rx", "8px")
-  .attr("width", 132)
-  .attr("height", 60)
-  .style("stroke", "grey")
-  .style("fill", "transparent")
-  .style("stroke-width", 1)
-  .style("pointer-events", "none")
-  .style("opacity", 0.4);
-
-svg3
-  .append("circle")
-  .attr("cx", 280)
-  .attr("cy", 10)
-  .attr("r", 6)
-  .style("fill", "#69b3a2");
-
-svg3
-  .append("text")
-  .style("font-size", ".75em")
-  .attr("x", 300)
-  .attr("y", 14)
-  .text("Desirable");
-
-svg3
-  .append("circle")
-  .attr("cx", 280)
-  .attr("cy", 30)
-  .attr("r", 6)
-  .style("fill", "#B369A3");
-
-svg3
-  .append("text")
-  .style("font-size", ".75em")
-  .attr("x", 300)
-  .attr("y", 34)
-  .text("Undesirable");
+  .attr("x1", x3(0))
+  .attr("y1", 0)
+  .attr("x2", x3(0))
+  .attr("y2", height3);

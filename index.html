@@ -27,6 +27,7 @@
     <script src="js/vis3.js" defer></script>
     <script src="js/vis4.js" defer></script>
     <script src="js/vis5.js" defer></script>
+    <script src="js/vis6.js" defer></script>
 
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
     <link
@@ -190,7 +191,7 @@
 
       <figure class="floater">
         <img class="long" src="./images/redlake-sign.jpg" />
-        <figcaption>Chris's thumb looks a lot like an index finger.</figcaption>
+        <figcaption>Chris's visits Red Lake County oin 2015</figcaption>
       </figure>
 
       <p>
@@ -226,16 +227,14 @@
         to a low score by the USDA's criteria.
       </p>
 
-      <br>
+      <br />
 
-      <h5 class="chart-title">
-        Natural amenities index by county
-      </h5>
+      <h5 class="chart-title">Natural amenities index by county</h5>
       <h6 class="chart-subtitle">higher value means more amenities</h6>
-      
-      <div id="map" style="display: grid">
+
+      <div style="display: grid">
         <svg
-          id="svg"
+          id="svg-map"
           viewBox="0 0 960 600"
           stroke-linejoin="round"
           stroke-linecap="round"
@@ -252,55 +251,71 @@
       <br />
 
       <aside>
-        <h2>Voting with their feet</h2>
+        <h2>We vote with our feet</h2>
         <p>
           The argument can be made that the most desirable places to live are
-          the places where people actually choose to live. We can therefore
-          order couties by their population growth based on the latest census
-          data gathered.
+          the places where people actually choose to live. However, census data
+          reveals that some counties have inconsitent growth over the last 3
+          decades. For example, <strong>Telfair county, GA</strong> grew
+          moderately in 2000, rapidly in 2010, and actually shrank in 2020.
         </p>
+        <!--
         <br />
         <h5 class="chart-title">
           Top 10 counties by percent change in population
         </h5>
         <h6 class="chart-subtitle">2010 - 2020</h6>
         <div id="pop_growth_bar_1"></div>
-        <p>
-          However, short-term factors can skew these results. Many of the
-          fastest growing counties are oil towns that benefitted from the shale
-          oil boom in the past decade, while counties on the decline cite
-          disruptive additions to their state's highways.
-        </p>
+        -->
         <br />
         <h5 class="chart-title">Percent change across 3 decades</h5>
         <h6 class="chart-subtitle">459 county sample</h6>
         <div id="pop_growth_scatter_1"></div>
         <p>
-          You can see that populations change can vary greatly from decade to
-          decade. To better compare across time, I have devised the N8 Index™
-          whereby the the percent change in each of the past 3 decades are
-          multiplied. To avoid sign flipping, the N8 Index™ omits counties that
-          have decades of growth and decline.
+          To better compare across time, I have devised the N8 Index™ whereby
+          the the percent change in each of the past 3 decades are multiplied.
+          To avoid sign flipping, the N8 Index™ omits counties that have decades
+          of growth and decline.
         </p>
         <br />
 
         <h5 class="chart-title">Counties ranked by N8 Index™</h5>
-        <h6 class="chart-subtitle">
-          &nbsp; &nbsp;← top 10 &nbsp;&nbsp;&nbsp;&nbsp; bottom 10 →
-        </h6>
+
         <br />
         <div id="n8_index"></div>
+        <br />
+        <h5 class="chart-title">Most Desirable County</h5>
         <div style="display: flex">
-          <figure>
-            <!--
-            <figcaption id="selected-figcaption">
-              McDowell County, WV
-            </figcaption>
-            -->
-            <img src="./images/mcdowell.webp" style="width: 258px" />
-          </figure>
+          <img src="./images/forsyth.jpg" style="width: 45%; margin: 1rem" />
+          <div style="flex: 1 1 auto; margin: 1rem">
+            <table>
+              <caption>
+                Forsyth County, GA
+              </caption>
+              <tr>
+                <td>N8 index</td>
+                <td class="right">4.17</td>
+              </tr>
+              <tr>
+                <td>Natural Amenity Index</td>
+                <td class="right">0.99</td>
+              </tr>
+              <tr>
+                <td>January Sunlight</td>
+                <td class="right">156</td>
+              </tr>
+              <tr>
+                <td>July Humidity</td>
+                <td class="right">70</td>
+              </tr>
+            </table>
+          </div>
+        </div>
 
-          <div>
+        <br />
+        <h5 class="chart-title">Least Desirable County</h5>
+        <div style="display: flex">
+          <div style="flex: 1 1 auto; margin: 1rem">
             <table>
               <caption>
                 McDowell County, WV
@@ -320,6 +335,36 @@
               <tr>
                 <td>July Humidity</td>
                 <td class="right">60</td>
+              </tr>
+            </table>
+          </div>
+          <img src="./images/mcdowell.jpeg" style="width: 45%; margin: 1rem" />
+        </div>
+
+        <br />
+        <h5 class="chart-title">Red Lake County is Fairly Average</h5>
+        <div style="display: flex">
+          <img src="./images/redlake.jpeg" style="width: 45%; margin: 1rem" />
+          <div style="flex: 1 1 auto; margin: 1rem">
+            <table>
+              <caption>
+                Red Lake County, MN
+              </caption>
+              <tr>
+                <td>N8 index</td>
+                <td class="right">-0.09</td>
+              </tr>
+              <tr>
+                <td>Natural Amenity Index</td>
+                <td class="right">-6.4</td>
+              </tr>
+              <tr>
+                <td>January Sunlight</td>
+                <td class="right">139</td>
+              </tr>
+              <tr>
+                <td>July Humidity</td>
+                <td class="right">53</td>
               </tr>
             </table>
           </div>
@@ -526,7 +571,7 @@
       <figure class="floater">
         <img src="./images/scenic.jpg" style="width: 600px" />
         <figcaption>
-          Chris was ruthlessly abandoned on his kayaking trip.
+          Chris standons along the Red Lake River.
         </figcaption>
       </figure>
       <p>
@@ -551,15 +596,13 @@
         the meet-and-greet at T&J's. "There's so much to do here," she said.
         "You just have to really dig into it."
       </p>
-      <br>
+      <br />
 
-      <h5 class="chart-title">
-        Counties ordered accoording to other measures
-      </h5>
+      <h5 class="chart-title">Counties ordered accoording to other measures</h5>
       <h6 class="chart-subtitle">Random sample of about 300</h6>
-      <br>
-      <div id="my_dataviz" style="display: flex;"></div>
-      <br>
+      <br />
+      <div id="my_dataviz" style="display: flex"></div>
+      <br />
       <p>
         Before visiting, I wouldn't have believed her. I was worried that 36
         hours would be too long a visit, that we'd run out of things to say or
@@ -597,6 +640,27 @@
         For some of us, it takes a place as small as Red Lake County to drive
         home just how big this country really is.
       </p>
+
+      <!--
+        <br>
+        <div id="map2" style="display: grid">
+          <svg
+            id="svg-map2"
+            stroke-linejoin="round"
+            stroke-linecap="round"
+          >
+            <defs>
+              <filter id="blur">
+                <feGaussianBlur stdDeviation="5"></feGaussianBlur>
+              </filter>
+            </defs>
+          </svg>
+        </div>
+
+        <br>
+        <br>
+        -->
+
       <p>
         By Christopher Ingraham
         <br />

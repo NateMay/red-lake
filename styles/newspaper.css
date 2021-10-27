@@ -112,7 +112,7 @@ aside figure {
   overflow: hidden;
 }
 
-.chart-title, caption {
+.chart-title {
   color: #29627e;
   text-align: center;
   margin: 0.5rem 1rem;
@@ -159,6 +159,12 @@ table {
   font-size: 1rem;
   margin-top: 0.75rem;
   border-collapse: collapse;
+}
+caption {
+  color: #29627e;
+  text-align: center;
+  margin: 0.5rem 0;
+  font-size: 1.1rem;
 }
 tr:nth-child(even){background-color: #d8a4cd;}
 tr:nth-child(odd){background-color: #afd4cc}
