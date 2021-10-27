@@ -1,7 +1,5 @@
-// console.log(amenities);
+// https://bl.ocks.org/mbostock/4136647
 
-// Map reference
-// http://bl.ocks.org/jadiehm/af4a00140c213dfbc4e6
 
 var amenity_scores = {};
 var names = {};
@@ -10,12 +8,12 @@ amenities.forEach(function (d) {
   amenity_scores[d.id] = +d.nat_score;
   names[d.id] = d.name;
 });
-console.log(amenity_scores)
+
 
 var width = 960,
   height = 600;
 var color_domain = [
-   -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12
+  -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,
 ];
 var legend_labels = [
   "12+",
@@ -39,95 +37,147 @@ var legend_labels = [
   "-6",
 ];
 
-const greens = ['#b369a3', '#ab71a3', '#a577a3', '#a07ca3', '#9b81a3', '#9686a3', '#928aa3', '#8e8ea3', '#8a92a2', '#8696a2', '#8399a2', '#7f9da2', '#7ca0a2', '#79a3a2', '#75a7a2', '#72aaa2', '#6fada2', '#6cb0a2', '#69b3a2']
-var color = d3.scale
-  .threshold()
+const greens = [
+  "#b369a3",
+  "#ab71a3",
+  "#a577a3",
+  "#a07ca3",
+  "#9b81a3",
+  "#9686a3",
+  "#928aa3",
+  "#8e8ea3",
+  "#8a92a2",
+  "#8696a2",
+  "#8399a2",
+  "#7f9da2",
+  "#7ca0a2",
+  "#79a3a2",
+  "#75a7a2",
+  "#72aaa2",
+  "#6fada2",
+  "#6cb0a2",
+  "#69b3a2",
+];
+
+var color = d3
+  .scaleLinear()
   .domain(color_domain)
   .range(greens);
 
-var color = d3.scale
-  .threshold()
-  .domain(color_domain)
-  .range(greens);
-
-  // Define the div for the tooltip
-var tooltip = d3.select("body").append("div")	
-  .attr("class", "tooltip")				
+// Define the div for the tooltip
+var tooltip = d3
+  .select("body")
+  .append("div")
+  .attr("class", "tooltip")
   .style("opacity", 0);
 
 var svg = d3
-  .select("#map")
-  .append("svg")
+  .select("#svg")
   .attr("viewBox", `0 0 ${width} ${height}`)
   .style("margin", "-15px auto");
 
-var path = d3.geo.path();
+var defs4 = svg.select("defs");
+var path = d3.geoPath();
 
-// //Moves selction to front
-// d3.selection.prototype.moveToFront = function () {
-//   return this.each(function () {
-//     this.parentNode.appendChild(this);
-//   });
-// };
+defs4
+  .append("path")
+  .attr("id", "nation")
+  .attr("d", path(topojson.feature(usa2, usa2.objects.nation)));
 
-// //Moves selction to back
-// d3.selection.prototype.moveToBack = function () {
-//   return this.each(function () {
-//     var firstChild = this.parentNode.firstChild;
-//     if (firstChild) {
-//       this.parentNode.insertBefore(this, firstChild);
-//     }
-//   });
-// };
+
+
+// svg
+//   .append("path")
+//   .attr("fill", "none")
+//   .attr("stroke", "#777")
+//   .attr("stroke-width", 0.7)
+//   .attr(
+//     "d",
+//     path(
+//       topojson.mesh(usa2, usa2.objects.states, function (a, b) {
+//         return a !== b;
+//       })
+//     )
+//   );
+
+
 
 svg
   .append("g")
   .attr("class", "county")
   .selectAll("path")
-  .data(topojson.feature(usa, usa.objects.counties).features)
+  .data(topojson.feature(usa2, usa2.objects.counties).features)
   .enter()
   .append("path")
   .attr("d", path)
   .attr("id", d => d.id)
   .style("fill", (d) => color(amenity_scores[d.id]))
-  .style("opacity", 0.8)
   .on("mouseover", county => {
-    tooltip.transition().duration(200).style("opacity", 0.9);
+    tooltip.style("opacity", 0.9);
     tooltip
       .text(names[county.id] + ": " + amenity_scores[county.id])
       .style("left", d3.event.pageX + "px")
       .style("top", d3.event.pageY - 28 + "px");
   })
-  .on("mouseout", (county) => tooltip.transition().duration(500).style("opacity", 0));
+  .on("mouseout", (county) => tooltip.style("opacity", 0));
+
+svg
+  .append("g")
+  .attr("class", "county")
+  .selectAll("path")
+  .data(topojson.feature(usa2, usa2.objects.states).features)
+  .enter()
+  .append("path")
+  .attr("d", path)
+  .style("stroke-width", 1.5)
+  .style("fill", "transparent")
+  .style("pointer-events", "none")
 
 var legend = svg
   .selectAll("g.legend")
-  .data(color_domain.map(n => n - 1).reverse())
+  .data(color_domain.map(n => n - 1))
   .enter()
   .append("g")
   .attr("class", "legend");
 
-var ls_w = 50,
+var ls_w = 20,
   ls_h = 20;
 
 legend
   .append("rect")
-  .attr("x",  (_c, i) => width - i * ls_w - ls_w)
-  .attr("y", 550)
+  .attr("x",  (_c, i) => 40 + i * ls_w - ls_w)
+  .attr("y", 560)
   .attr("width", ls_w)
   .attr("height", ls_h)
-  .style("fill", d => color(d))
-  .style("opacity", 0.8);
+  .style("fill", d => color(d));
 
 legend
   .append("text")
-  .attr("x",  (_c, i) => width - i * ls_w - ls_w)
-  .attr("y", 590)
-  .text((_c, i) => legend_labels[i]);
+  .attr("x",  (_c, i) => 40 +  i * ls_w - ls_w)
+  .attr("y", 600)
+  .text((_c, i) => i % 2 == 0 ? legend_labels[legend_labels.length - 1 - i] : '');
 
 svg
   .append("text")
-  .attr("x", 10)
-  .attr("y", 540)
+  .attr("x", 20)
+  .attr("y", 550)
   .attr("class", "legend_title")
-  .text("Natural Amenity Index");
+  .text("Natural amenities scale");
+
+svg
+  .append("line")
+  .style("stroke", "#333")
+  .style("stroke-width", 2)
+  .style("pointer-events", "none")
+  .style("opacity", 0.8)
+  .attr("x1", "51.3%")
+  .attr("y1", 94)
+  .attr("x2", "57%")
+  .attr("y2", 65);
+
+svg
+  .append("text")
+  .attr("x", "58%")
+  .style("font-size", "1rem")
+  .attr("y", 65)
+  .text("Red Lake: -6.4");

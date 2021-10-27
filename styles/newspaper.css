@@ -72,7 +72,7 @@ figcaption {
 aside {
   width: 47%;
   padding-left: 1rem;
-  margin: 2rem 0 2rem 2rem;
+  margin: 0 0 2rem 2rem;
   float: right;
   box-shadow: inset 5px 0 5px -5px #29627e;
   background-color: #f3eed5;
@@ -115,12 +115,13 @@ div.tooltip {
   text-align: center;
   /* width: 60px; */
   /* height: 28px; */
-  padding: 4px;
-  font: 12px sans-serif;
-  background: lightsteelblue;
+  padding: 0.5rem;
+  font: 1rem sans-serif;
+  background: #f9f7f1;
   border: 0px;
   border-radius: 4px;
   pointer-events: none;
+  box-shadow: 0 11px 15px -7px rgb(0 0 0 / 20%), 0 24px 38px 3px rgb(0 0 0 / 14%), 0 9px 46px 8px rgb(0 0 0 / 12%);
 }
 
 .top_10_2020 {

@@ -6,6 +6,7 @@
       I called this place ‘America’s worst place to live.’ Then I went there.
     </title>
     <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://d3js.org/topojson.v2.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
     <script
       type="text/javascript"
@@ -17,10 +18,13 @@
     ></script>
     <script src="data/data.js" defer></script>
     <script src="data/amenity.js" defer></script>
-    <script src="data/usa.js" defer></script>
+    <script src="data/usa2.js" defer></script>
+
     <script src="js/vis1.js" defer></script>
     <script src="js/vis2.js" defer></script>
     <script src="js/vis3.js" defer></script>
+    <script src="js/vis4.js" defer></script>
+
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
     <link
       href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900,400italic,700italic,900italic|Droid+Serif:400,700,400italic,700italic"
@@ -177,11 +181,10 @@
       <h1>
         I called this place ‘America’s worst place to live.’ Then I went there.
       </h1>
-      <p style="display: flex">
+      <p>
         <span class="subtitle">By Christopher Ingraham </span>
-        <span style="flex: 1 1 auto"></span>
-        <a href="./explorer.html">Explore Map ►</a><br />
       </p>
+
       <figure class="floater">
         <img src="./images/redlake-sign.jpg" />
         <figcaption>Chris's thumb looks a lot like an index finger.</figcaption>
@@ -219,59 +222,26 @@
         there aren't any actual lakes in the county -- all of which contribute
         to a low score by the USDA's criteria.
       </p>
-      <p>
-        Could it really be that bad? I had to find out. At the invite of local
-        businessman Jason Brumwell (The Post paid), I took a trip up there last
-        week to see the truth behind the numbers. I wanted to find out what life
-        in America's worst county was really like.
-      </p>
-      <p>
-        Some county residents were hurt and even angered by their last-place
-        ranking. But not Brumwell. He's a relentlessly positive guy who keeps a
-        beat-up copy of "The 2,548 Best Things Anybody Ever Said" in the back of
-        his beat-up Buick LaCrosse.
-      </p>
-      <p>
-        Where others saw a slight, Brumwell saw an opportunity. With his father
-        and two of his siblings, he operates Voyageur's View Camping & Tubing on
-        Red Lake River. "My family gets to spend our days listening to people
-        from all over the United States and the world tell us how beautiful our
-        area is," he says.
-      </p>
-      <p>
-        Brumwell welcomed the media attention the county's last-place ranking
-        brought, and encouraged other businesses to do the same. My original
-        story hadn't quite framed it this way, but some locals took it to mean
-        that we called their county ugly. So, soon after my article went up,
-        restaurants and bars began offering specials on "ugly burgers" and "ugly
-        wings." Officials in Red Lake Falls, the county's largest town, with a
-        population of 1,410, floated the idea of renaming next year's Summerfest
-        the "Uglyfest."
-      </p>
-      <p>
-        When I arrived at the county courthouse, Red Lake Falls mayor Kevin
-        Harmoning, who also runs a modular home manufacturer in town, took me
-        inside for some initial introductions. The biggest headache in a town
-        like Red Lake Falls? "Making ends meet," he says, referring to keeping
-        the town running, the bills paid and the lights on.
-      </p>
 
-      <p>
-        During the recession, they had actually been forced to turn some of the
-        street lights off to keep everything else running, city administrator
-        Kathleen Schmitz said. But all in all, the downturn's effects hadn't
-        been as harsh here as elsewhere. Many of the farms outside of town that
-        form the economic backbone of the county weren't affected much at all.
-        "People still needed to eat," Schmitz said.
-      </p>
-
-      <p>
-        From the courthouse, Brumwell piled a group of us into a bright red
-        roofless tour bus and took us to a dairy farm outside of town owned by
-        brothers Carl and Joe Schindler. They milk about 120 cows 12 at a time
-        the old-fashioned way, with a simple pump system installed in their
-        dairy barn.
-      </p>
+      <br />
+      <div id="map" style="display: grid">
+        <svg
+          id="svg"
+          width="960"
+          height="600"
+          stroke-linejoin="round"
+          stroke-linecap="round"
+        >
+          <defs>
+            <filter id="blur">
+              <feGaussianBlur stdDeviation="5"></feGaussianBlur>
+            </filter>
+          </defs>
+        </svg>
+      </div>
+      <br />
+      <br />
+      <br />
 
       <aside>
         <h2>Voting with their feet</h2>
@@ -347,6 +317,60 @@
           </div>
         </div>
       </aside>
+
+      <p>
+        Could it really be that bad? I had to find out. At the invite of local
+        businessman Jason Brumwell (The Post paid), I took a trip up there last
+        week to see the truth behind the numbers. I wanted to find out what life
+        in America's worst county was really like.
+      </p>
+      <p>
+        Some county residents were hurt and even angered by their last-place
+        ranking. But not Brumwell. He's a relentlessly positive guy who keeps a
+        beat-up copy of "The 2,548 Best Things Anybody Ever Said" in the back of
+        his beat-up Buick LaCrosse.
+      </p>
+      <p>
+        Where others saw a slight, Brumwell saw an opportunity. With his father
+        and two of his siblings, he operates Voyageur's View Camping & Tubing on
+        Red Lake River. "My family gets to spend our days listening to people
+        from all over the United States and the world tell us how beautiful our
+        area is," he says.
+      </p>
+      <p>
+        Brumwell welcomed the media attention the county's last-place ranking
+        brought, and encouraged other businesses to do the same. My original
+        story hadn't quite framed it this way, but some locals took it to mean
+        that we called their county ugly. So, soon after my article went up,
+        restaurants and bars began offering specials on "ugly burgers" and "ugly
+        wings." Officials in Red Lake Falls, the county's largest town, with a
+        population of 1,410, floated the idea of renaming next year's Summerfest
+        the "Uglyfest."
+      </p>
+      <p>
+        When I arrived at the county courthouse, Red Lake Falls mayor Kevin
+        Harmoning, who also runs a modular home manufacturer in town, took me
+        inside for some initial introductions. The biggest headache in a town
+        like Red Lake Falls? "Making ends meet," he says, referring to keeping
+        the town running, the bills paid and the lights on.
+      </p>
+
+      <p>
+        During the recession, they had actually been forced to turn some of the
+        street lights off to keep everything else running, city administrator
+        Kathleen Schmitz said. But all in all, the downturn's effects hadn't
+        been as harsh here as elsewhere. Many of the farms outside of town that
+        form the economic backbone of the county weren't affected much at all.
+        "People still needed to eat," Schmitz said.
+      </p>
+
+      <p>
+        From the courthouse, Brumwell piled a group of us into a bright red
+        roofless tour bus and took us to a dairy farm outside of town owned by
+        brothers Carl and Joe Schindler. They milk about 120 cows 12 at a time
+        the old-fashioned way, with a simple pump system installed in their
+        dairy barn.
+      </p>
 
       <p>
         The visit was a shot of pure country. A newborn calf suckled my thumb as
@@ -562,9 +586,6 @@
         Christopher Ingraham was a reporter on The Post’s business desk from
         2014 to 2017. He currently writes the Why Axis, a newsletter about the
         data shaping and informing our lives.
-      </p>
-      <p style="width: 100%; text-align: right">
-        <a href="./explorer.html">Explore Map ►</a><br />
       </p>
     </div>
   </body>
