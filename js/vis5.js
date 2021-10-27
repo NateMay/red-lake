@@ -5,7 +5,7 @@ const metrics = [
     metric: "Avg. January Temp",
     prop: "jan_temp",
     label: "fahrenheit",
-    color: "#69B3A2"
+    color: "#69B3A2",
   },
   {
     metric: "Avg. July Temp",
@@ -40,6 +40,7 @@ metrics.forEach((metric) => {
       state: c.STATE,
       value: c[metric.prop],
       metric: metric.metric,
+      nat_amen: c.nat_amen
     })),
   ].filter((c, i) => i % 10 == 0);
 
@@ -48,11 +49,12 @@ metrics.forEach((metric) => {
     height = 600 - margin.top - margin.bottom;
 
   // append the svg object to the body of the page
-  var svg = d3
+  var svg5 = d3
     .select("#my_dataviz")
     .append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
+    // .attr("width", width + margin.left + margin.right)
+    // .attr("height", height + margin.top + margin.bottom)
+    .attr("viewBox", `0 0 ${width + margin.left + margin.right} ${height + margin.top + margin.bottom}`)
     .append("g")
     .attr("transform", `translate(${margin.left},${margin.top})`);
 
@@ -65,7 +67,7 @@ metrics.forEach((metric) => {
     .scaleLinear()
     .domain([minVal, maxVal]) // Note that here the Y scale is set manually
     .range([height, 0]);
-  svg.append("g").call(d3.axisLeft(y));
+  svg5.append("g").call(d3.axisLeft(y));
 
   // Build and Show the X scale. It is a band scale like for a boxplot: each group has an dedicated RANGE on the axis. This range has a length of x.bandwidth
   var x = d3
@@ -73,7 +75,7 @@ metrics.forEach((metric) => {
     .range([0, width])
     .domain([metric.metric])
     .padding(0.05); // This is important: it is the space between 2 groups. 0 means no padding. 1 is the maximum.
-  svg
+  svg5
     .append("g")
     .attr("transform", "translate(0," + height + ")")
     .call(d3.axisBottom(x));
@@ -110,7 +112,7 @@ metrics.forEach((metric) => {
     .domain([-maxNum, maxNum]);
 
   // Add the shape to this svg!
-  svg
+  svg5
     .selectAll("myViolin")
     .data(sumstat)
     .enter() // So now we are working group per group
@@ -132,7 +134,7 @@ metrics.forEach((metric) => {
 
   // Add individual points with jitter
   var jitterWidth = 40;
-  svg
+  svg5
     .selectAll("indPoints")
     .data(metricData)
     .enter()
@@ -141,10 +143,7 @@ metrics.forEach((metric) => {
     .attr("cy", (d) => y(d.value))
     .attr("r", d => d.name === "RED LAKE" ? 8 : 5)
     .style("opacity", (d) => (d.name === "RED LAKE" ? 1 : 0.5))
-    .style("fill", (d) => {
-      if (d.name === "RED LAKE") return "red";
-      return metric.color;
-    })
+    .style("fill", (d) => d.name === "RED LAKE" ? "red" : metric.color)
     .attr("stroke", "white")
     .on("mouseover", (county) => {
       tooltip.style("opacity", 0.9);
@@ -155,7 +154,7 @@ metrics.forEach((metric) => {
     })
     .on("mouseout", (county) => tooltip.style("opacity", 0));
 
-  svg
+  svg5
     .append("text")
     .attr("text-anchor", "end")
     .style("fill", "grey")

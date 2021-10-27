@@ -56,8 +56,29 @@ const greens = [
   "#6cb0a2",
   "#69b3a2",
 ];
+const red_greens = [
+  "#7d4972",
+  "#926688",
+  "#a8839f",
+  "#bea1b6",
+  "#d3bfce",
+  "#e9dfe6",
+  "#ffffff",
+  "#eff4f3",
+  "#e0e8e7",
+  "#d0dddc",
+  "#c1d2d0",
+  "#b2c7c5",
+  "#a3bcb9",
+  "#94b1ae",
+  "#85a7a3",
+  "#769c98",
+  "#67928d",
+  "#588782",
+  "#497d78",
+];
 
-var color = d3.scaleLinear().domain(color_domain).range(greens);
+var color = d3.scaleLinear().domain(color_domain).range(red_greens);
 
 // Define the div for the tooltip
 var tooltip = d3
@@ -107,6 +128,7 @@ svg
   .append("path")
   .attr("d", path)
   .style("stroke-width", 1.5)
+  .style("stroke", "#555")
   .style("fill", "transparent")
   .style("pointer-events", "none");
 
@@ -145,7 +167,7 @@ svg
 
 svg
   .append("line")
-  .style("stroke", "#333")
+  .style("stroke", "red")
   .style("stroke-width", 2)
   .style("pointer-events", "none")
   .style("opacity", 0.8)
@@ -158,5 +180,6 @@ svg
   .append("text")
   .attr("x", "58%")
   .style("font-size", "1rem")
+  .style("fill", "red")
   .attr("y", 65)
   .text("Red Lake: -6.4");
