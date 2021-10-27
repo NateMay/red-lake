@@ -52,8 +52,6 @@ metrics.forEach((metric) => {
   var svg5 = d3
     .select("#my_dataviz")
     .append("svg")
-    // .attr("width", width + margin.left + margin.right)
-    // .attr("height", height + margin.top + margin.bottom)
     .attr("viewBox", `0 0 ${width + margin.left + margin.right} ${height + margin.top + margin.bottom}`)
     .append("g")
     .attr("transform", `translate(${margin.left},${margin.top})`);

@@ -60,7 +60,24 @@ figure.floater {
   overflow: hidden;
 }
 figure.floater img {
-  max-height: 350px;
+  max-height: 37vw;
+}
+figure.floater img.long {
+  max-height: clamp(min(23vw, 1000px), min(37vw, 1000px), 330px)
+}
+
+@media screen and (max-width: 600px) {
+  figure.floater {
+    width: 100%;
+  }
+  figure.floater img,
+  figure.floater img.long{
+    width: 100%;
+    max-height: clamp(100vw, 100vw, 100vw) !important;
+  }
+  /* figure.floater img {
+    max-height: clamp(100vw, auto, 100vw);
+  } */
 }
 
 figcaption {
