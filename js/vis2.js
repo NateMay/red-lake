@@ -1,4 +1,5 @@
-const sample = rates.filter((c, i) => i % 7 === 2)
+const red_lake = 27125
+const sample = rates.filter((c, i) => c.id === red_lake || i % 7 === 2)
 
 const _2020_rates2 = _.orderBy(sample, ["percentChange2020"], ["desc"]);
 const _2020_max2 = _.first(_2020_rates2).percentChange2020;
@@ -57,11 +58,12 @@ svg2
   .data(sample)
   .enter()
   .append("circle")
-  .attr("r", 4)
+  .attr("r", county => county.id == red_lake ? 6 : 4)
   .attr("cx", (county) => x2(county.percentChange2010 * 100))
   .attr("cy", (county) => y2(county.percentChange2020 * 100))
-  .attr("fill", (county) => z2(county.percentChange2000) )
-  .style("opacity", "0.8")
+  .attr("fill", (county) =>  county.id == red_lake ? "red" : z2(county.percentChange2000))
+  .style("opacity", county => county.id == red_lake ? 1 : 0.8)
+  .attr("stroke", county => county.id == red_lake ? "white" : "none")
   .on("mouseover", (county) => {
     tooltip.transition().duration(200).style("opacity", 0.9);
     tooltip

@@ -1368,7 +1368,6 @@ var census = [
   {"id":27119,"state":"MN","name":"Polk County","ru_code":"3","pop_1990":"32589","pop_2000":"31370","pop_2010":"31600","pop_2020":"31192"},
   {"id":27121,"state":"MN","name":"Pope County","ru_code":"8","pop_1990":"10745","pop_2000":"11222","pop_2010":"10995","pop_2020":"11308"},
   {"id":27123,"state":"MN","name":"Ramsey County","ru_code":"1","pop_1990":"485760","pop_2000":"511272","pop_2010":"508640","pop_2020":"552352"},
-  {"id":27125,"state":"MN","name":"Red Lake County","ru_code":"8","pop_1990":"4525","pop_2000":"4300","pop_2010":"4089","pop_2020":"3935"},
   {"id":27127,"state":"MN","name":"Redwood County","ru_code":"7","pop_1990":"17254","pop_2000":"16813","pop_2010":"16059","pop_2020":"15425"},
   {"id":27129,"state":"MN","name":"Renville County","ru_code":"8","pop_1990":"17673","pop_2000":"17147","pop_2010":"15730","pop_2020":"14723"},
   {"id":27131,"state":"MN","name":"Rice County","ru_code":"4","pop_1990":"49183","pop_2000":"56663","pop_2010":"64142","pop_2020":"67097"},
@@ -3136,6 +3135,7 @@ var census = [
   {"id":56041,"state":"WY","name":"Uinta County","ru_code":"7","pop_1990":"18705","pop_2000":"19745","pop_2010":"21118","pop_2020":"20450"},
   {"id":56043,"state":"WY","name":"Washakie County","ru_code":"7","pop_1990":"8388","pop_2000":"8292","pop_2010":"8533","pop_2020":"7685"},
   {"id":56045,"state":"WY","name":"Weston County","ru_code":"7","pop_1990":"6518","pop_2000":"6643","pop_2010":"7208","pop_2020":"6838"},
+  {"id":27125,"state":"MN","name":"Red Lake County","ru_code":"8","pop_1990":"4525","pop_2000":"4300","pop_2010":"4089","pop_2020":"3935"},
 ]
 
 const percentChange2020 = (county) =>

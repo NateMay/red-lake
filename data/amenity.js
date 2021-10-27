@@ -1,5 +1,5 @@
 const amenities = [
-  {"id":27125,"STATE":"MN","name":"RED LAKE","cen_div":"4","Rural_urban_code":"9","urban_code":"9","jan_temp":"3.8","jan_sun":"139","july_temp":"68.8","july_hum":"53","topo_code":"1","water":"0.02","log":"0.615","nat_score":"-6.4","nat_amen":"1"},
+
   {"id":27167,"STATE":"MN","name":"WILKIN","cen_div":"4","Rural_urban_code":"6","urban_code":"6","jan_temp":"8.7","jan_sun":"141","july_temp":"71.7","july_hum":"53","topo_code":"1","water":"0.03","log":"0.979","nat_score":"-6.1","nat_amen":"1"},
   {"id":18159,"STATE":"IN","name":"TIPTON","cen_div":"3","Rural_urban_code":"3","urban_code":"2","jan_temp":"27.6","jan_sun":"125","july_temp":"75.5","july_hum":"62","topo_code":"2","water":"0.01","log":"0","nat_score":"-5.4","nat_amen":"1"},
   {"id":27107,"STATE":"MN","name":"NORMAN","cen_div":"4","Rural_urban_code":"8","urban_code":"6","jan_temp":"5.8","jan_sun":"139","july_temp":"70.3","july_hum":"53","topo_code":"4","water":"0.06","log":"1.836","nat_score":"-5.37","nat_amen":"1"},
@@ -3109,5 +3109,22 @@ const amenities = [
   {"id":6045,"STATE":"CA","name":"MENDOCINO","cen_div":"9","Rural_urban_code":"4","urban_code":"3","jan_temp":"47.9","jan_sun":"168","july_temp":"56.5","july_hum":"60","topo_code":"20","water":"9.52","log":"6.859","nat_score":"10.93","nat_amen":"7"},
   {"id":6083,"STATE":"CA","name":"SANTA BARBAR","cen_div":"9","Rural_urban_code":"2","urban_code":"2","jan_temp":"53.2","jan_sun":"224","july_temp":"66.6","july_hum":"68","topo_code":"21","water":"27.74","log":"7.928","nat_score":"10.97","nat_amen":"7"},
   {"id":6023,"STATE":"CA","name":"HUMBOLDT","cen_div":"9","Rural_urban_code":"5","urban_code":"7","jan_temp":"47.3","jan_sun":"168","july_temp":"56.3","july_hum":"60","topo_code":"21","water":"11.84","log":"7.076","nat_score":"11.15","nat_amen":"7"},
-  {"id":6111,"STATE":"CA","name":"VENTURA","cen_div":"9","Rural_urban_code":"0","urban_code":"1","jan_temp":"53.8","jan_sun":"224","july_temp":"65.2","july_hum":"68","topo_code":"21","water":"16.41","log":"7.403","nat_score":"11.17","nat_amen":"7"}
+  {"id":6111,"STATE":"CA","name":"VENTURA","cen_div":"9","Rural_urban_code":"0","urban_code":"1","jan_temp":"53.8","jan_sun":"224","july_temp":"65.2","july_hum":"68","topo_code":"21","water":"16.41","log":"7.403","nat_score":"11.17","nat_amen":"7"},
+  {
+    "id":27125,
+    "STATE":"MN",
+    "name":"RED LAKE",
+    "cen_div":"4",
+    "Rural_urban_code":"9",
+    "urban_code":"9",
+    "jan_temp":"3.8",
+    "jan_sun":"139",
+    "july_temp":"68.8",
+    "july_hum":"53",
+    "topo_code":"1",
+    "water":"0.02",
+    "log":"0.615",
+    "nat_score":"-6.4",
+    "nat_amen": "1"
+  },
   ]

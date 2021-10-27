@@ -1,6 +1,5 @@
 // https://bl.ocks.org/mbostock/4136647
 
-
 var amenity_scores = {};
 var names = {};
 
@@ -8,7 +7,6 @@ amenities.forEach(function (d) {
   amenity_scores[d.id] = +d.nat_score;
   names[d.id] = d.name;
 });
-
 
 var width = 960,
   height = 600;
@@ -59,10 +57,7 @@ const greens = [
   "#69b3a2",
 ];
 
-var color = d3
-  .scaleLinear()
-  .domain(color_domain)
-  .range(greens);
+var color = d3.scaleLinear().domain(color_domain).range(greens);
 
 // Define the div for the tooltip
 var tooltip = d3
@@ -84,24 +79,6 @@ defs4
   .attr("id", "nation")
   .attr("d", path(topojson.feature(usa2, usa2.objects.nation)));
 
-
-
-// svg
-//   .append("path")
-//   .attr("fill", "none")
-//   .attr("stroke", "#777")
-//   .attr("stroke-width", 0.7)
-//   .attr(
-//     "d",
-//     path(
-//       topojson.mesh(usa2, usa2.objects.states, function (a, b) {
-//         return a !== b;
-//       })
-//     )
-//   );
-
-
-
 svg
   .append("g")
   .attr("class", "county")
@@ -110,9 +87,9 @@ svg
   .enter()
   .append("path")
   .attr("d", path)
-  .attr("id", d => d.id)
+  .attr("id", (d) => d.id)
   .style("fill", (d) => color(amenity_scores[d.id]))
-  .on("mouseover", county => {
+  .on("mouseover", (county) => {
     tooltip.style("opacity", 0.9);
     tooltip
       .text(names[county.id] + ": " + amenity_scores[county.id])
@@ -131,11 +108,11 @@ svg
   .attr("d", path)
   .style("stroke-width", 1.5)
   .style("fill", "transparent")
-  .style("pointer-events", "none")
+  .style("pointer-events", "none");
 
 var legend = svg
   .selectAll("g.legend")
-  .data(color_domain.map(n => n - 1))
+  .data(color_domain.map((n) => n - 1))
   .enter()
   .append("g")
   .attr("class", "legend");
@@ -145,17 +122,19 @@ var ls_w = 20,
 
 legend
   .append("rect")
-  .attr("x",  (_c, i) => 40 + i * ls_w - ls_w)
+  .attr("x", (_c, i) => 40 + i * ls_w - ls_w)
   .attr("y", 560)
   .attr("width", ls_w)
   .attr("height", ls_h)
-  .style("fill", d => color(d));
+  .style("fill", (d) => color(d));
 
 legend
   .append("text")
-  .attr("x",  (_c, i) => 40 +  i * ls_w - ls_w)
+  .attr("x", (_c, i) => 40 + i * ls_w - ls_w)
   .attr("y", 600)
-  .text((_c, i) => i % 2 == 0 ? legend_labels[legend_labels.length - 1 - i] : '');
+  .text((_c, i) =>
+    i % 2 == 0 ? legend_labels[legend_labels.length - 1 - i] : ""
+  );
 
 svg
   .append("text")
