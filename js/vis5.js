@@ -25,6 +25,12 @@ const metrics = [
     label: "hours",
     color: "#B3A369"
   },
+  {
+    metric: "Water Coverage",
+    prop: "log",
+    label: "pecent (log)",
+    color: "#7482c3"
+  },
 ];
 
 metrics.forEach((metric) => {
@@ -38,7 +44,7 @@ metrics.forEach((metric) => {
   ].filter((c, i) => i % 10 == 0);
 
   var margin = { top: 10, right: 30, bottom: 30, left: 40 },
-    width = 240 - margin.left - margin.right,
+    width = 200 - margin.left - margin.right,
     height = 600 - margin.top - margin.bottom;
 
   // append the svg object to the body of the page
