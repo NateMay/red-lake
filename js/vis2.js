@@ -68,19 +68,19 @@ svg2
   .style("opacity", (county) => (county.id == red_lake ? 1 : 0.8))
   .attr("stroke", (county) => (county.id == red_lake ? "red" : "none"))
   .attr("stroke-width", 2)
-  .on("mouseover", (county) => {
-    tooltip.transition().duration(200).style("opacity", 0.9);
-    tooltip
-      .html(
-        `${county.name}, ${county.state} <br> 
-        ${Math.trunc(county.percentChange2020 * 100)}% in 2020 <br>
-        ${Math.trunc(county.percentChange2010 * 100)}% in 2010 <br>
-        ${Math.trunc(county.percentChange2000 * 100)}% in 2000 <br>`
-      )
-      .style("left", d3.event.pageX + "px")
-      .style("top", d3.event.pageY - 28 + "px");
-  })
-  .on("mouseout", hideTooltip);
+  // .on("mouseover", (county) => {
+  //   tooltip.transition().duration(200).style("opacity", 0.9);
+  //   tooltip
+  //     .html(
+  //       `${county.name}, ${county.state} <br> 
+  //       ${Math.trunc(county.percentChange2020 * 100)}% in 2020 <br>
+  //       ${Math.trunc(county.percentChange2010 * 100)}% in 2010 <br>
+  //       ${Math.trunc(county.percentChange2000 * 100)}% in 2000 <br>`
+  //     )
+  //     .style("left", d3.event.pageX + "px")
+  //     .style("top", d3.event.pageY - 28 + "px");
+  // })
+  // .on("mouseout", hideTooltip);
 
 // positive - negative boundaries
 svg2
