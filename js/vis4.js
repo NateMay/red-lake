@@ -98,13 +98,13 @@ var path = d3.geoPath();
 defs4
   .append("path")
   .attr("id", "nation")
-  .attr("d", path(topojson.feature(usa2, usa2.objects.nation)));
+  .attr("d", path(topojson.feature(usa, usa.objects.nation)));
 
 svg
   .append("g")
   .attr("class", "county")
   .selectAll("path")
-  .data(topojson.feature(usa2, usa2.objects.counties).features)
+  .data(topojson.feature(usa, usa.objects.counties).features)
   .enter()
   .append("path")
   .attr("d", path)
@@ -123,7 +123,7 @@ svg
   .append("g")
   .attr("class", "county")
   .selectAll("path")
-  .data(topojson.feature(usa2, usa2.objects.states).features)
+  .data(topojson.feature(usa, usa.objects.states).features)
   .enter()
   .append("path")
   .attr("d", path)
