@@ -65,15 +65,9 @@ svg
     "d",
     d3
       .area()
-      .x(function (d) {
-        return x(d.x);
-      })
-      .y0(function (d) {
-        return y(d.CI_right);
-      })
-      .y1(function (d) {
-        return y(d.CI_left);
-      })
+      .x((d) => x(d.x))
+      .y0((d) => y(d.CI_right))
+      .y1((d) => y(d.CI_left))
   );
 
 // Add the line Red Lake
@@ -82,7 +76,7 @@ svg
   .datum(red_lake_trend)
   .attr("fill", "none")
   .attr("stroke", "red")
-  .attr("stroke-width", 1.5)
+  .attr("stroke-width", 2)
   .attr(
     "d",
     d3
@@ -181,7 +175,7 @@ svg
   .attr("height", height)
   .style("opacity", "0.4")
   .style("fill", "#555")
-  .style("pointer-events", "none")
+  .style("pointer-events", "none");
 
 svg
   .append("text")
@@ -191,5 +185,4 @@ svg
   .attr("y", 182)
   .attr("x", -200)
   .attr("transform", "rotate(-90)")
-  .text('Recession');
-
+  .text("Recession");
