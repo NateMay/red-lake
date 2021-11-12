@@ -81,19 +81,19 @@ const fetchImage = async (search_term) =>
   ).then((response) => response.json());
 
 function updateImage(county, state) {
-  // fetchImage(`${county}, ${abbrMap[state]}`).then((data) => {
-  //   try {
-  //     elm("focus-image").src = data.items[0].pagemap.cse_image[0].src;
-  //   } catch {
-  //     fetchImage(`${abbrMap[state]}`).then((data) => {
-  //       try {
-  //         elm("focus-image").src = data.items[0].pagemap.cse_image[0].src;
-  //       } catch {
-  //         // alert("Daily Image Search Quota exeeded");
-  //       }
-  //     });
-  //   }
-  // });
+  fetchImage(`${county}, ${abbrMap[state]}`).then((data) => {
+    try {
+      elm("focus-image").src = data.items[0].pagemap.cse_image[0].src;
+    } catch {
+      fetchImage(`${abbrMap[state]}`).then((data) => {
+        try {
+          elm("focus-image").src = data.items[0].pagemap.cse_image[0].src;
+        } catch {
+          // alert("Daily Image Search Quota exeeded");
+        }
+      });
+    }
+  });
 }
 
 let graphsOnly = false;
