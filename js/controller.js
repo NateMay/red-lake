@@ -77,7 +77,7 @@ const engine = "2262297689a09ed37";
 
 const fetchImage = async (search_term) =>
   fetch(
-    `${endpoint}?cx=${engine}&exactTerms=${search_term}&key=${SEACRH_APIKEY}`
+    `${endpoint}?cx=${engine}&exactTerms=${search_term}&key=AIzaSyCrG3hUnNjYmyj15qyqW-ZRp0ABsHQVRho`
   ).then((response) => response.json());
 
 function updateImage(county, state) {
