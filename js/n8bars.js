@@ -86,6 +86,11 @@ pos_gs
   .attr("height", 16)
   .attr("width", (county) => x3(county.n8 * pos_multiplier) - x3(0))
   .style("fill", "#69b3a2")
+  .style("cursor", "pointer")
+  .on("click", (d) => {
+    openComparer()
+    selectCounty(d.id);
+  })
 
 pos_gs
   .append("text")
@@ -94,7 +99,12 @@ pos_gs
   .attr("x", (county) => x3(0) - 6)
   .attr("text-anchor", "end")
   .attr("font-size", "11px")
-  .attr("fill", "#555");
+  .attr("fill", "#555")
+  .style("cursor", "pointer")
+  .on("click", (d) => {
+    openComparer()
+    selectCounty(d.id);
+  })
 
 pos_gs
   .append("text")
@@ -103,7 +113,7 @@ pos_gs
   .attr("x", (county) => x3(0) + 6)
   .attr("text-anchor", "start")
   .attr("font-size", "11px")
-  .attr("fill", "#fff");
+  .attr("fill", "#fff")
 
 const rl_data = negatives.find(r => r.id == red_lake)
     
@@ -121,18 +131,11 @@ neg_gs
   .attr("height", 16)
   .attr("width", (county) => x3(-county.n8 * neg_multiplier) - x3(0))
   .style("fill", c => c.id == red_lake ? "red" : "#B369A3")
-  // .on("mouseover", (county) => {
-    //   tooltip.transition().duration(200).style("opacity", 0.9);
-    //   tooltip
-    //     .html(
-    //       `${county.name}, ${county.state} <br> ${parseFloat(
-    //         county.n8 * pos_multiplier
-    //       ).toFixed(2)}`
-    //     )
-    //     .style("left", d3.event.pageX + "px")
-    //     .style("top", d3.event.pageY - 28 + "px");
-    // })
-  // .on("mouseout", hideTooltip);
+  .style("cursor", "pointer")
+  .on("click", (d) => {
+    openComparer()
+    selectCounty(d.id);
+  })
 
 neg_gs
   .append("text")
@@ -141,7 +144,12 @@ neg_gs
   .attr("x", (county) => x3(0) + 6)
   .attr("text-anchor", "start")
   .attr("font-size", "11px")
-  .attr("fill", c => c.id == red_lake ? "red" : "#555");
+  .attr("fill", c => c.id == red_lake ? "red" : "#555")
+  .style("cursor", "pointer")
+  .on("click", (d) => {
+    openComparer()
+    selectCounty(d.id);
+  })
 
 neg_gs
   .append("text")
@@ -163,3 +171,5 @@ svg3
   .attr("y1", 0)
   .attr("x2", x3(0))
   .attr("y2", height3);
+
+

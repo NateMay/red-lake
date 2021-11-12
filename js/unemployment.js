@@ -34,7 +34,7 @@ var margin = { top: 0, right: 30, bottom: 30, left: 20 },
   height = 400 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
-var svg = d3
+var graph = d3
   .select("#my_dataviz2")
   .append("svg")
   .attr("width", width + margin.left + margin.right)
@@ -46,17 +46,17 @@ var svg = d3
 
 // Add X axis --> it is a date format
 var x = d3.scaleLinear().domain([2000, 2020]).range([0, width]);
-svg
+graph
   .append("g")
   .attr("transform", "translate(0," + height + ")")
   .call(d3.axisBottom(x).tickFormat(d3.format("d")));
 
 // Add Y axis
 var y = d3.scaleLinear().domain([0, overall_max]).range([height, 0]);
-svg.append("g").call(d3.axisLeft(y));
+graph.append("g").call(d3.axisLeft(y));
 
 // Show confidence interval
-svg
+graph
   .append("path")
   .datum(unemploy_trend)
   .attr("fill", "#afd4cc")
@@ -71,7 +71,7 @@ svg
   );
 
 // Add the line Red Lake
-svg
+graph
   .append("path")
   .datum(red_lake_trend)
   .attr("fill", "none")
@@ -86,7 +86,7 @@ svg
   );
 
 // Add the USA line
-svg
+graph
   .append("path")
   .datum(unemploy_trend)
   .attr("fill", "none")
@@ -101,7 +101,7 @@ svg
   );
 
 // axis labels
-svg
+graph
   .append("text")
   .attr("text-anchor", "end")
   .style("fill", "grey")
@@ -111,7 +111,7 @@ svg
   .attr("transform", "rotate(-90)")
   .text("unemployment %");
 
-svg
+graph
   .append("text")
   .attr("x", 40)
   .attr("y", 255)
@@ -120,7 +120,7 @@ svg
   .style("fill", "red")
   .text("Red Lake");
 
-svg
+graph
   .append("text")
   .attr("x", 40)
   .attr("y", 325)
@@ -128,7 +128,7 @@ svg
   .style("fill", "#29627e")
   .text("National average");
 
-svg
+graph
   .append("text")
   .attr("x", 245)
   .attr("y", 10)
@@ -136,7 +136,7 @@ svg
   .style("fill", "#555")
   .text("Highest county unemplyment");
 
-svg
+graph
   .append("line")
   .style("stroke", "#555")
   .style("stroke-width", 1)
@@ -147,7 +147,7 @@ svg
   .attr("x2", 285)
   .attr("y2", 60);
 
-svg
+graph
   .append("text")
   .attr("x", 205)
   .attr("y", 333)
@@ -155,7 +155,7 @@ svg
   .style("fill", "#555")
   .text("Lowest county unemplyment");
 
-svg
+graph
   .append("line")
   .style("stroke", "#555")
   .style("stroke-width", 1)
@@ -167,7 +167,7 @@ svg
   .attr("y2", 355);
 
 // recession
-svg
+graph
   .append("rect")
   .attr("x", x(2007.89))
   .attr("y", 0)
@@ -177,7 +177,7 @@ svg
   .style("fill", "#555")
   .style("pointer-events", "none");
 
-svg
+graph
   .append("text")
   .style("fill", "white")
   .style("font-size", ".65em")
@@ -186,3 +186,43 @@ svg
   .attr("x", -200)
   .attr("transform", "rotate(-90)")
   .text("Recession");
+
+let focus_county_line = null
+let focus_county_line_name = null
+if (focus_county_line) focus_county_line.remove();
+function addCountyLine(fips, cname) {
+  // Add the line Red Lake
+  if (focus_county_line) focus_county_line.remove();
+  if (focus_county_line_name) focus_county_line_name.remove();
+  const focus_county_unemploy = unempoyment.find((u) => u.id == fips);
+
+  const focus_county = [];
+  for (let year = 2000; year <= 2020; year++) {
+    const yStr = year.toString();
+    focus_county.push({
+      x: +yStr,
+      y: +focus_county_unemploy[yStr],
+    });
+  }
+  focus_county_line = graph
+    .append("path")
+    .datum(focus_county)
+    .attr("fill", "none")
+    .attr("stroke", "blue")
+    .attr("stroke-width", 2)
+    .attr(
+      "d",
+      d3
+        .line()
+        .x((d) => x(d.x))
+        .y((d) => y(d.y))
+    );
+  focus_county_line_name = graph
+    .append("text")
+    .attr("x", 40)
+    .attr("y", 55)
+    .style("font-size", ".65em")
+    .style("font-weight", "bold")
+    .style("fill", "blue")
+    .text(cname);
+}

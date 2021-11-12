@@ -54,7 +54,8 @@ var z2 = d3
 
 svg2.append("g").call(d3.axisLeft(y2));
 
-svg2
+
+const nodes2 = svg2
   .selectAll("whatever")
   .data(sample)
   .enter()
@@ -62,25 +63,56 @@ svg2
   .attr("r", (county) => (county.id == red_lake ? 6 : 4))
   .attr("cx", (county) => x2(county.percentChange2010 * 100))
   .attr("cy", (county) => y2(county.percentChange2020 * 100))
-  .attr("fill", (county) =>
-    z2(county.percentChange2000)
-  )
+  .attr("fill", (county) => z2(county.percentChange2000))
   .style("opacity", (county) => (county.id == red_lake ? 1 : 0.8))
   .attr("stroke", (county) => (county.id == red_lake ? "red" : "none"))
-  .attr("stroke-width", 2)
-  // .on("mouseover", (county) => {
-  //   tooltip.transition().duration(200).style("opacity", 0.9);
-  //   tooltip
-  //     .html(
-  //       `${county.name}, ${county.state} <br> 
-  //       ${Math.trunc(county.percentChange2020 * 100)}% in 2020 <br>
-  //       ${Math.trunc(county.percentChange2010 * 100)}% in 2010 <br>
-  //       ${Math.trunc(county.percentChange2000 * 100)}% in 2000 <br>`
-  //     )
-  //     .style("left", d3.event.pageX + "px")
-  //     .style("top", d3.event.pageY - 28 + "px");
-  // })
-  // .on("mouseout", hideTooltip);
+  .attr("class", 'scatter-dot')
+  .on("click", (d) => {
+    openComparer()
+    selectCounty(d.id);
+  })
+  .on("mouseover", (county) => {
+    tooltip.transition().duration(200).style("opacity", 0.9);
+    tooltip
+      .html(
+        `${county.name}, ${county.state} <br> 
+        ${Math.trunc(county.percentChange2020 * 100)}% in 2020 <br>
+        ${Math.trunc(county.percentChange2010 * 100)}% in 2010 <br>
+        ${Math.trunc(county.percentChange2000 * 100)}% in 2000 <br>`
+      )
+      .style("left", d3.event.pageX + "px")
+      .style("top", d3.event.pageY - 28 + "px");
+  })
+  .on("mouseout", hideTooltip);
+
+let selected_dot = null
+
+function updateScatter(fips) {
+  if (selected_dot) selected_dot.remove()
+  const focusC = rates.find(county => county.id == fips)
+  selected_dot = svg2
+    .append("circle")
+    .attr("r", 6)
+    .attr("cx", (d) => x2(Math.max(Math.min(_2010_max * 100,focusC.percentChange2010 * 100)), _2010_min * 100))
+    .attr("cy", (d) => y2(Math.max(Math.min(_2020_max2 * 100, focusC.percentChange2020 * 100)), _2020_min2 * 100))
+    .attr("fill", (d) => z2(focusC.percentChange2000))
+    .style("opacity", 1)
+    .attr("stroke", "blue")
+    .attr("class", 'scatter-dot')
+    .on("mouseover", (d) => {
+      tooltip.transition().duration(200).style("opacity", 0.9);
+      tooltip
+        .html(
+          `${focusC.name}, ${focusC.state} <br> 
+          ${Math.trunc(focusC.percentChange2020 * 100)}% in 2020 <br>
+          ${Math.trunc(focusC.percentChange2010 * 100)}% in 2010 <br>
+          ${Math.trunc(focusC.percentChange2000 * 100)}% in 2000 <br>`
+        )
+        .style("left", d3.event.pageX + "px")
+        .style("top", d3.event.pageY - 28 + "px");
+    })
+    .on("mouseout", hideTooltip);
+}
 
 // positive - negative boundaries
 svg2
@@ -218,6 +250,7 @@ telfair
   .attr("dy", "1.2em")
   .style("font-weight", "bold")
   .text("Telfair county, GA");
+
 telfair.append("tspan").attr("x", 285).attr("dy", "1.2em").text(" 7% in 2000");
 telfair.append("tspan").attr("x", 285).attr("dy", "1.2em").text(" 39% in 2010");
 telfair.append("tspan").attr("x", 285).attr("dy", "1.2em").text("-24% in 2020");
